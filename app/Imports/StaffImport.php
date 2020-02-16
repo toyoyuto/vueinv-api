@@ -9,17 +9,17 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 class StaffImport implements ToModel, WithHeadingRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
         return new Staff([
-            'id' => $row['id'],
+            'id'       => $row['id'],
             'staff_cd' => $row['staff_cd'],
-            'name' => $row['name'],
-            'email' => $row['email'],
+            'name'     => $row['name'],
+            'email'    => $row['email'],
         ]);
     }
 }

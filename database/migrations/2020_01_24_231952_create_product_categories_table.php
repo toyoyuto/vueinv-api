@@ -11,15 +11,15 @@ class CreateProductCategoriesTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('product_categories', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('name', 255)->comment('商品カテゴリー名');
             $table->unsignedBigInteger('consumption_tax_id')->comment('消費税ID');
             $table->timestamps();
             $table->softDeletes();
-            
+
             // 消費税テーブル
             $table->foreign('consumption_tax_id')->references('id')->on('consumption_taxs');
         });
@@ -30,7 +30,7 @@ class CreateProductCategoriesTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('product_categories');
     }

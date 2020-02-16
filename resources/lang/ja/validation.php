@@ -1,7 +1,8 @@
-<?php  // resources/lang/ja/validation.php
+<?php
+
+ // resources/lang/ja/validation.php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Validation Language Lines
@@ -84,12 +85,12 @@ return [
     'billing_cutoff_date'  => '選択された:attributeは正しくありません。',
 
     // 追加メッセージ
-    'after_or_equal_today' => ':attributeが過去日です。修正してください。',
-    'attachment_file' => ':attributeのファイル形式は許可されていません。',
-    'amount_total' => ':attributeが正しくありません。システム管理者にお問合せください。',
-    'amount_par_dtl' => ':attributeが正しくありません。システム管理者にお問合せください。',
+    'after_or_equal_today'   => ':attributeが過去日です。修正してください。',
+    'attachment_file'        => ':attributeのファイル形式は許可されていません。',
+    'amount_total'           => ':attributeが正しくありません。システム管理者にお問合せください。',
+    'amount_par_dtl'         => ':attributeが正しくありません。システム管理者にお問合せください。',
     'barcode_start_position' => 'ラベル指定が「:label_type」のため、:attributeは1～:start_position_cellingにしてください。',
-    'tel' => ':attributeを正しく入力して下さい。',
+    'tel'                    => ':attributeを正しく入力して下さい。',
 
     /*
     |--------------------------------------------------------------------------
@@ -120,12 +121,11 @@ return [
     */
 
     'attributes' => [
-        'id' => 'ID',
-        'product_cd' => '商品CD',
-        'product_category_id' => 'カテゴリーID',
+        'id'                     => 'ID',
+        'product_cd'             => '商品CD',
+        'product_category_id'    => 'カテゴリーID',
         'without_tax_sell_price' => '販売価格',
-        'email' => 'メールアドレス',
-	    'password' => 'パスワード',
+        'email'                  => 'メールアドレス',
+        'password'               => 'パスワード',
     ],
-
 ];

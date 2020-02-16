@@ -11,9 +11,9 @@ class CreateStoresTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('stores', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('name', 255)->comment('店舗名');
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateStoresTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('stores');
     }

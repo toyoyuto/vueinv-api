@@ -22,7 +22,6 @@ class ProductUpdateRequest extends BaseRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

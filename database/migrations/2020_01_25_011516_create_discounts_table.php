@@ -11,9 +11,9 @@ class CreateDiscountsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('discounts', function (Blueprint $table) {
+        Schema::create('discounts', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->integer('discount_type')->comment('割引種別(1:会計,2:商品)');
             $table->string('name', 255)->comment('割引名');
@@ -27,7 +27,7 @@ class CreateDiscountsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('discounts');
     }

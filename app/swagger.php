@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * @SWG\Swagger(
  *     basePath="/",
  *     host="localhost:8000",

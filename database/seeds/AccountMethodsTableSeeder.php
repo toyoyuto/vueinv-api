@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Imports\AccountMethodImport;
 use App\ORM\AccountMethod;
+use Illuminate\Database\Seeder;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AccountMethodsTableSeeder extends Seeder
@@ -12,13 +12,13 @@ class AccountMethodsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         AccountMethod::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $file_name = "database/seeds/data/account_method.xlsx";
-        Excel::import(new AccountMethodImport, $file_name);
+        $file_name = 'database/seeds/data/account_method.xlsx';
+        Excel::import(new AccountMethodImport(), $file_name);
     }
 }

@@ -11,9 +11,9 @@ class CreateAccountProductsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('account_products', function (Blueprint $table) {
+        Schema::create('account_products', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('account_id')->comment('会計ID');
             $table->unsignedBigInteger('product_id')->comment('商品ID');
@@ -41,7 +41,7 @@ class CreateAccountProductsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('account_products');
     }

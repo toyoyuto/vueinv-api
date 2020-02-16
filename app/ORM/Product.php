@@ -6,17 +6,36 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @SWG\Definition(
- *     definition="product", 
- *     type="object", 
- *     @SWG\Property(property="id",description="ID", type="integer"),
- *     @SWG\Property(property="product_cd",description="商品CD", type="string"),
- *     @SWG\Property(property="name",description="商品名", type="string"),
- *     @SWG\Property(property="product_category_id",description="商品カテゴリーCD", type="integer"),
- *     @SWG\Property(property="without_tax_sell_price",description="販売単価(税抜き)", type="string")
- * )
+ * App\ORM\Product
+ *
+ * @property int $id
+ * @property string $product_cd 商品CD
+ * @property string $name 商品名
+ * @property int $product_category_id 商品カテゴリーID
+ * @property int $without_tax_sell_price 販売単価(税抜き)
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property string|null $deleted_at
+ * @property-read \App\ORM\ProductCategory $productCategory
+ *
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product newQuery()
+ * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product query()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereProductCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereProductCd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereWithoutTaxSellPrice($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product withoutTrashed()
+ * @mixin \Eloquent
  */
-
 class Product extends Model
 {
     use SoftDeletes;
@@ -37,7 +56,6 @@ class Product extends Model
 
     /**
      * 商品→商品カテゴリを取得
-     *
      */
     public function productCategory()
     {

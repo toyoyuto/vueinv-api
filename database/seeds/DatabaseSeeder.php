@@ -9,7 +9,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         // マスタ系
         $this->call(StoresTableSeeder::class);
@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DiscountsTableSeeder::class);
         $this->call(ProductCategoriesTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
-        
+
         // テスト系
         $this->call(AccountsTableSeeder::class);
     }

@@ -11,9 +11,9 @@ class CreateAccountDiscountsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('account_discounts', function (Blueprint $table) {
+        Schema::create('account_discounts', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('account_id')->comment('会計ID');
             $table->unsignedBigInteger('discount_id')->comment('割引ID');
@@ -33,7 +33,7 @@ class CreateAccountDiscountsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('account_discounts');
     }

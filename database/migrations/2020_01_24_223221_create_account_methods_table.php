@@ -11,9 +11,9 @@ class CreateAccountMethodsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('account_methods', function (Blueprint $table) {
+        Schema::create('account_methods', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('name', 255)->comment('会計方法名');
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateAccountMethodsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('account_methods');
     }

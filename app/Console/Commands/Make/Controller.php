@@ -16,6 +16,7 @@ class Controller extends ControllerMakeCommand
             return;
         }
         \Log::info($this->option('model'));
+
         if ($this->option('model')) {
             $name = $this->getModuleName();
             $path = $this->getModuleRelativePath();

@@ -3,9 +3,7 @@
 namespace App\Console\Commands\Make;
 
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
-use Log;
 
 trait BuildReplacementsTrate
 {
@@ -99,7 +97,7 @@ trait BuildReplacementsTrate
         \Log::info($table);
         // AllColumns
         $allColumns     = DB::select("desc {$table}");
-        
+
         return array_merge($replaces, [
             'DummyRelativeNamespace'      => $relativeNamespace,
             'DummySwaggerDefinitionsHead' => $swaggerDefinitionsHead,

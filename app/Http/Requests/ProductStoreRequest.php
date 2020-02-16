@@ -22,7 +22,6 @@ class ProductStoreRequest extends BaseRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

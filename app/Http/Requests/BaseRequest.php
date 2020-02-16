@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;  
-use Illuminate\Http\Exceptions\HttpResponseException;
 use App\Constants\Constants;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class BaseRequest extends FormRequest
 {
@@ -19,11 +19,10 @@ class BaseRequest extends FormRequest
         return false;
     }
 
-
-    public function failedValidation(Validator $validator)
+    public function failedValidation(Validator $validator): void
     {
         $collection = collect($validator->errors())->flatten(1);
-        $messages = collect(["messages" => $collection]);
+        $messages   = collect(['messages' => $collection]);
         throw new HttpResponseException(
             response()->json($messages, Constants::SERVER_STATES['unprocessable'])
         );

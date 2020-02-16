@@ -11,9 +11,9 @@ class CreateStoreStaffsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('store_staffs', function (Blueprint $table) {
+        Schema::create('store_staffs', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->softDeletes();
@@ -25,7 +25,7 @@ class CreateStoreStaffsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('store_staffs');
     }

@@ -11,9 +11,9 @@ class CreateStaffsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('staffs', function (Blueprint $table) {
+        Schema::create('staffs', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->string('staff_cd', 10)->comment('スタッフCD');
             $table->string('name', 50)->comment('スタッフ名');
@@ -28,7 +28,7 @@ class CreateStaffsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('staffs');
     }

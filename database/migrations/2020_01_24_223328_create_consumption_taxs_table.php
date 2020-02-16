@@ -11,9 +11,9 @@ class CreateConsumptionTaxsTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('consumption_taxs', function (Blueprint $table) {
+        Schema::create('consumption_taxs', function (Blueprint $table): void {
             $table->bigIncrements('id');
             $table->integer('rate')->comment('消費税率');
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateConsumptionTaxsTable extends Migration
      *
      * @return void
      */
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('consumption_taxs');
     }

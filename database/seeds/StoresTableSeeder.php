@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Imports\StoreImport;
 use App\ORM\Store;
+use Illuminate\Database\Seeder;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StoresTableSeeder extends Seeder
@@ -12,7 +12,7 @@ class StoresTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         \Log::info('d');
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -21,7 +21,7 @@ class StoresTableSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         \Log::info('d');
-        $file_name = "database/seeds/data/store.xlsx";
-        Excel::import(new StoreImport, $file_name);
+        $file_name = 'database/seeds/data/store.xlsx';
+        Excel::import(new StoreImport(), $file_name);
     }
 }

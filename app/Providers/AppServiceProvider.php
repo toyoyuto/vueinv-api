@@ -11,21 +11,9 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->sqlLog();
-    }
-
-    private function sqlLog()
-    {
-        \DB::listen(function ($query) {
-            $sql = $query->sql;
-            for ($i = 0; $i < count($query->bindings); $i++) {
-                $sql = preg_replace("/\?/", $query->bindings[$i], $sql, 1);
-            }
-
-            \Log::debug("SQL", ["time" => sprintf("%.2f ms", $query->time), "sql" => $sql]);                                                                
-        });
     }
 
     /**
@@ -33,8 +21,20 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
+    }
+
+    private function sqlLog(): void
+    {
+        \DB::listen(function ($query): void {
+            $sql = $query->sql;
+
+            for ($i = 0; $i < count($query->bindings); $i++) {
+                $sql = preg_replace('/\\?/', $query->bindings[$i], $sql, 1);
+            }
+
+            \Log::debug('SQL', ['time' => sprintf('%.2f ms', $query->time), 'sql' => $sql]);
+        });
     }
 }

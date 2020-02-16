@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\ORM\Product;
+use App\Http\Requests\ProductSearchRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use App\Http\Requests\ProductSearchRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
+use App\ORM\Product;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class ProductService
@@ -125,6 +125,7 @@ class ProductService
     public function search(ProductSearchRequest $value)
     {
         $query   = $this->query($value->toArray());
+
         return $query->get();
     }
 }

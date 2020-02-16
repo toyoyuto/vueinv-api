@@ -11,7 +11,7 @@ class ProductSearchRequest extends BaseRequest
      * @SWG\Property(property="product_category_id",description="商品カテゴリーCD", type="integer")
      * @SWG\Property(property="without_tax_sell_price",description="販売単価(税抜き)", type="string")
      */
-    
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,11 +30,12 @@ class ProductSearchRequest extends BaseRequest
     public function rules()
     {
         \Log::info('fy');
+
         return [
-            'id' => ['nullable', 'integer'],
-            'product_cd' => ['nullable', 'max:10'],
-            'name' => ['nullable', 'max:255'],
-            'product_category_id' => ['nullable', 'integer'],
+            'id'                     => ['nullable', 'integer'],
+            'product_cd'             => ['nullable', 'max:10'],
+            'name'                   => ['nullable', 'max:255'],
+            'product_category_id'    => ['nullable', 'integer'],
             'without_tax_sell_price' => ['nullable', 'integer', 'max:11'],
         ];
     }

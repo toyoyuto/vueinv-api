@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\ORM\Account;
 use App\ORM\AccountDiscount;
+use Illuminate\Database\Seeder;
 
 class AccountDiscountsTableSeeder extends Seeder
 {
@@ -11,16 +11,15 @@ class AccountDiscountsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         AccountDiscount::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
+
         // 割引が行われたデータを取得
         $account_records = Account::where('account_discount_amount', '>', 0)->get();
-        
+
         $insert_data = [];
         $now         = now();
 

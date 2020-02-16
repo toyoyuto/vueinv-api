@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Services\ProductService;
-
 use Illuminate\Support\ServiceProvider;
 
 class DeferServiceProvider extends ServiceProvider
@@ -44,7 +43,7 @@ class DeferServiceProvider extends ServiceProvider
     public function provides()
     {
         return [
-            ProductService::class
+            ProductService::class,
         ];
     }
 }

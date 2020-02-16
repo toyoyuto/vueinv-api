@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Imports\StaffImport;
 use App\ORM\Staff;
+use Illuminate\Database\Seeder;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StaffsTableSeeder extends Seeder
@@ -12,13 +12,13 @@ class StaffsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Staff::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        $file_name = "database/seeds/data/staff.xlsx";
-        Excel::import(new StaffImport, $file_name);
+        $file_name = 'database/seeds/data/staff.xlsx';
+        Excel::import(new StaffImport(), $file_name);
     }
 }
