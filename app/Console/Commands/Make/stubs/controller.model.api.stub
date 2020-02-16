@@ -5,12 +5,8 @@ namespace DummyNamespace;
 use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest;
 use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularStoreRequest;
 use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularUpdateRequest;
-use App\Http\Resources\DummyRelativeNamespaceDummyResourceCamelSingularResource;
-use App\Http\Resources\DummyRelativeNamespaceDummyResourceCamelSingularResourceCollection;
 use DummyFullModelClass;
 use App\Services\DummyModelClassService;
-use App\ValueObjects\DummyModelClassStoreValue;
-use App\ValueObjects\DummyModelClassUpdateValue;
 use Throwable;
 
 class DummyClass extends BaseController
@@ -37,7 +33,7 @@ class DummyClass extends BaseController
      *         @SWG\Schema(
      *             @SWG\Property(
      *                 property="DummyResourceSnakePlural",
-     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
+     *                 ref="#/definitions/DummyResourceSnakeSingular"
      *             )
      *         )
      *     ),
@@ -72,13 +68,13 @@ class DummyClass extends BaseController
      *
      * Display a listing of the resource.
      *
-     * @return DummyResourceCamelSingularResourceCollection
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $DummyModelVariables = DummyModelClass::orderBy('id')->get();
 
-        return new DummyResourceCamelSingularResourceCollection($DummyModelVariables);
+        return response()->json(compact('DummyModelVariables'));
     }
 
     /**
@@ -115,7 +111,7 @@ class DummyClass extends BaseController
      *             @SWG\Property(
      *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyModelClassResource"
+     *                 ref="#/definitions/DummyResourceSnakeSingular"
      *             )
      *         )
      *     ),
@@ -155,14 +151,13 @@ class DummyClass extends BaseController
      *
      * @throws Throwable
      *
-     * @return DummyResourceCamelSingularResource
+     * @return \Illuminate\Http\Response
      */
     public function store(DummyModelClassService $service, DummyResourceCamelSingularStoreRequest $request)
     {
-        $DummyModelVariableStoreValue = new DummyModelClassStoreValue($request->all());
-        $DummyModelVariable = $service->store($DummyModelVariableStoreValue);
+        $DummyModelVariable = $service->store($request);
 
-        return new DummyResourceCamelSingularResource($DummyModelVariable);
+        return response()->json(compact('DummyModelVariable'));
     }
 
     /**
@@ -190,7 +185,7 @@ class DummyClass extends BaseController
      *             @SWG\Property(
      *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+     *                 ref="#/definitions/DummyResourceSnakeSingular"
      *             )
      *         )
      *     ),
@@ -227,11 +222,11 @@ class DummyClass extends BaseController
      *
      * @param DummyModelClass $DummyModelVariable
      *
-     * @return DummyResourceCamelSingularResource
+     * @return \Illuminate\Http\Response
      */
     public function show(DummyModelClass $DummyModelVariable)
     {
-        return new DummyResourceCamelSingularResource($DummyModelVariable);
+        return response()->json(compact('DummyModelVariable'));
     }
 
     /**
@@ -269,7 +264,7 @@ class DummyClass extends BaseController
      *             @SWG\Property(
      *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+     *                 ref="#/definitions/DummyResourceSnakeSingular"
      *             )
      *         )
      *     ),
@@ -314,10 +309,9 @@ class DummyClass extends BaseController
      */
     public function update(DummyModelClassService $service, DummyResourceCamelSingularUpdateRequest $request, DummyModelClass $DummyModelVariable)
     {
-        $DummyModelVariableUpdateValue = new DummyModelClassUpdateValue($request->all());
-        $DummyModelVariable = $service->update($DummyModelVariableUpdateValue, $DummyModelVariable);
+        $DummyModelVariable = $service->update($request, $DummyModelVariable);
 
-        return new DummyResourceCamelSingularResource($DummyModelVariable);
+        return response()->json(compact('DummyModelVariable'));
     }
 
     /**
@@ -401,7 +395,7 @@ class DummyClass extends BaseController
     {
         $DummyModelVariable = $service->destroy($DummyModelVariable);
 
-        return new DummyResourceCamelSingularResource($DummyModelVariable);
+        return response()->json(compact('DummyModelVariable'));
     }
 
     /**
@@ -430,30 +424,13 @@ class DummyClass extends BaseController
      *             ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularSearchRequest"
      *         )
      *     ),
-     *     @SWG\Parameter(
-     *         in="query",
-     *         name="per_page",
-     *         required=false,
-     *         type="integer",
-     *         type="integer",
-     *         description="1ページの件数。パラメータで0を指定orパラメータを設定しなければ、ページネーションは機能しない<br/>
-                            ページネーションを機能させない場合、pageパラメータも無効となる",
-     *     ),
-     *     @SWG\Parameter(
-     *         in="query",
-     *         required=false,
-     *         name="page",
-     *         type="integer",
-     *         description="取得するページ番号"
-     *     ),
-     *
      *     @SWG\Response(
      *         response=200,
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
      *                 property="DummyResourceSnakePlural",
-     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
+     *                 ref="#/definitions/DummyResourceSnakeSingular"
      *             )
      *         )
      *     ),
@@ -489,12 +466,12 @@ class DummyClass extends BaseController
      * @param DummyModelClassService $service
      * @param DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest $request
      *
-     * @return DummyResourceCamelSingularResourceCollection
+     * @return \Illuminate\Http\Response
      */
     public function search(DummyModelClassService $service, DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest $request)
     {
-        $DummyModelVariable = $service->search($request->toArray());
+        $DummyModelVariables = $service->search($request);
 
-        return new DummyResourceCamelSingularResourceCollection($DummyModelVariable);
+        return response()->json(compact('DummyModelVariables'));
     }
 }

@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "\u30de\u30eb\u30b7\u30a7API\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8",
+        "title": "VUEINV-API\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8",
         "version": "1.0"
     },
     "host": "localhost:8000",
@@ -508,7 +508,7 @@
                         "schema": {
                             "properties": {
                                 "products": {
-                                    "$ref": "#/definitions/ProductResourceCollection"
+                                    "$ref": "#/definitions/product"
                                 }
                             }
                         }
@@ -583,7 +583,7 @@
                             "properties": {
                                 "product": {
                                     "type": "object",
-                                    "$ref": "#/definitions/ProductResource"
+                                    "$ref": "#/definitions/product"
                                 }
                             }
                         }
@@ -657,7 +657,7 @@
                             "properties": {
                                 "product": {
                                     "type": "object",
-                                    "$ref": "#/definitions/ProductResource"
+                                    "$ref": "#/definitions/product"
                                 }
                             }
                         }
@@ -739,7 +739,7 @@
                             "properties": {
                                 "product": {
                                     "type": "object",
-                                    "$ref": "#/definitions/ProductResource"
+                                    "$ref": "#/definitions/product"
                                 }
                             }
                         }
@@ -889,20 +889,6 @@
                             "$ref": "#/definitions/ProductSearchRequest"
                         },
                         "type": "object"
-                    },
-                    {
-                        "name": "per_page",
-                        "in": "query",
-                        "description": "1\u30da\u30fc\u30b8\u306e\u4ef6\u6570\u3002\u30d1\u30e9\u30e1\u30fc\u30bf\u30670\u3092\u6307\u5b9aor\u30d1\u30e9\u30e1\u30fc\u30bf\u3092\u8a2d\u5b9a\u3057\u306a\u3051\u308c\u3070\u3001\u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u306f\u6a5f\u80fd\u3057\u306a\u3044<br/>\r\n                            \u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u3092\u6a5f\u80fd\u3055\u305b\u306a\u3044\u5834\u5408\u3001page\u30d1\u30e9\u30e1\u30fc\u30bf\u3082\u7121\u52b9\u3068\u306a\u308b",
-                        "required": false,
-                        "type": "integer"
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "\u53d6\u5f97\u3059\u308b\u30da\u30fc\u30b8\u756a\u53f7",
-                        "required": false,
-                        "type": "integer"
                     }
                 ],
                 "responses": {
@@ -911,7 +897,7 @@
                         "schema": {
                             "properties": {
                                 "products": {
-                                    "$ref": "#/definitions/ProductResourceCollection"
+                                    "$ref": "#/definitions/product"
                                 }
                             }
                         }

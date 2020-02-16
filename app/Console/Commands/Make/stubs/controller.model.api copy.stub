@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace DummyNamespace;
 
-use App\Http\Requests\ProductSearchRequest;
-use App\Http\Requests\ProductStoreRequest;
-use App\Http\Requests\ProductUpdateRequest;
-use App\ORM\Product;
-use App\Services\ProductService;
+use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest;
+use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularStoreRequest;
+use App\Http\Requests\DummyRelativeNamespaceDummyResourceCamelSingularUpdateRequest;
+use App\Http\Resources\DummyRelativeNamespaceDummyResourceCamelSingularResource;
+use App\Http\Resources\DummyRelativeNamespaceDummyResourceCamelSingularResourceCollection;
+use DummyFullModelClass;
+use App\Services\DummyModelClassService;
+use App\ValueObjects\DummyModelClassStoreValue;
+use App\ValueObjects\DummyModelClassUpdateValue;
 use Throwable;
 
-class ProductController extends BaseController
+class DummyClass extends BaseController
 {
     /**
      * @SWG\Get(
-     *     path="/api/products",
+     *     path="/api/DummyUrl",
      *     summary="RESOURCE一覧",
      *     description="RESOURCE一覧を返す。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *     @SWG\Parameter(
      *         name="Authorization",
@@ -32,8 +36,8 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 property="DummyResourceSnakePlural",
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
      *             )
      *         )
      *     ),
@@ -68,23 +72,23 @@ class ProductController extends BaseController
      *
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return DummyResourceCamelSingularResourceCollection
      */
     public function index()
     {
-        $products = Product::orderBy('id')->get();
+        $DummyModelVariables = DummyModelClass::orderBy('id')->get();
 
-        return response()->json(compact('products'));
+        return new DummyResourceCamelSingularResourceCollection($DummyModelVariables);
     }
 
     /**
      * @SWG\Post(
-     *     path="/api/products",
+     *     path="/api/DummyUrl",
      *     summary="RESOURCE登録",
      *     description="RESOURCEを登録する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -100,7 +104,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductStoreRequest"
+     *             ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularStoreRequest"
      *         )
      *     ),
      *
@@ -109,9 +113,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyModelClassResource"
      *             )
      *         )
      *     ),
@@ -146,28 +150,29 @@ class ProductController extends BaseController
      *
      * Store a newly created resource in storage.
      *
-     * @param ProductService $service
-     * @param ProductStoreRequest $request
+     * @param DummyModelClassService $service
+     * @param DummyResourceCamelSingularStoreRequest $request
      *
      * @throws Throwable
      *
-     * @return \Illuminate\Http\Response
+     * @return DummyResourceCamelSingularResource
      */
-    public function store(ProductService $service, ProductStoreRequest $request)
+    public function store(DummyModelClassService $service, DummyResourceCamelSingularStoreRequest $request)
     {
-        $product = $service->store($request);
+        $DummyModelVariableStoreValue = new DummyModelClassStoreValue($request->all());
+        $DummyModelVariable = $service->store($DummyModelVariableStoreValue);
 
-        return response()->json(compact('product'));
+        return new DummyResourceCamelSingularResource($DummyModelVariable);
     }
 
     /**
      * @SWG\Get(
-     *     path="/api/products/{id}",
+     *     path="/api/DummyUrl/{id}",
      *     summary="RESOURCE取得",
      *     description="RESOURCEを取得する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -183,9 +188,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
      *             )
      *         )
      *     ),
@@ -220,23 +225,23 @@ class ProductController extends BaseController
      *
      * Display the specified resource.
      *
-     * @param Product $product
+     * @param DummyModelClass $DummyModelVariable
      *
-     * @return \Illuminate\Http\Response
+     * @return DummyResourceCamelSingularResource
      */
-    public function show(Product $product)
+    public function show(DummyModelClass $DummyModelVariable)
     {
-        return response()->json(compact('product'));
+        return new DummyResourceCamelSingularResource($DummyModelVariable);
     }
 
     /**
      * @SWG\Put(
-     *     path="/api/products/{id}",
+     *     path="/api/DummyUrl/{id}",
      *     summary="RESOURCE更新",
      *     description="RESOURCEを更新する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -253,7 +258,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductUpdateRequest"
+     *             ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
      *         )
      *     ),
      *
@@ -262,9 +267,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
      *             )
      *         )
      *     ),
@@ -299,29 +304,30 @@ class ProductController extends BaseController
      *
      * Update the specified resource in storage.
      *
-     * @param ProductService $service
-     * @param ProductUpdateRequest $request
-     * @param Product $product
+     * @param DummyModelClassService $service
+     * @param DummyResourceCamelSingularUpdateRequest $request
+     * @param DummyModelClass $DummyModelVariable
      *
      * @throws Throwable
      *
-     * @return ProductResource
+     * @return DummyResourceCamelSingularResource
      */
-    public function update(ProductService $service, ProductUpdateRequest $request, Product $product)
+    public function update(DummyModelClassService $service, DummyResourceCamelSingularUpdateRequest $request, DummyModelClass $DummyModelVariable)
     {
-        $product = $service->update($request, $product);
+        $DummyModelVariableUpdateValue = new DummyModelClassUpdateValue($request->all());
+        $DummyModelVariable = $service->update($DummyModelVariableUpdateValue, $DummyModelVariable);
 
-        return response()->json(compact('product'));
+        return new DummyResourceCamelSingularResource($DummyModelVariable);
     }
 
     /**
      * @SWG\Delete(
-     *     path="/api/products/{id}",
+     *     path="/api/DummyUrl/{id}",
      *     summary="RESOURCE削除",
      *     description="RESOURCEを論理削除する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -338,7 +344,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductUpdateRequest"
+     *             ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
      *         )
      *     ),
      *
@@ -347,9 +353,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="DummyResourceSnakeSingular",
      *                 type="object",
-     *                 ref="#/definitions/ProductResource"
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
      *             )
      *         )
      *     ),
@@ -384,28 +390,28 @@ class ProductController extends BaseController
      *
      * Remove the specified resource from storage.
      *
-     * @param ProductService $service
-     * @param Product $product
+     * @param DummyModelClassService $service
+     * @param DummyModelClass $DummyModelVariable
      *
      * @throws Throwable
      *
-     * @return ProductResource
+     * @return DummyResourceCamelSingularResource
      */
-    public function destroy(ProductService $service, Product $product)
+    public function destroy(DummyModelClassService $service, DummyModelClass $DummyModelVariable)
     {
-        $product = $service->destroy($product);
+        $DummyModelVariable = $service->destroy($DummyModelVariable);
 
-        return response()->json(compact('product'));
+        return new DummyResourceCamelSingularResource($DummyModelVariable);
     }
 
     /**
      * @SWG\Post(
-     *     path="/api/products/search",
+     *     path="/api/DummyUrl/search",
      *     summary="RESOURCE検索",
      *     description="RESOURCEを検索する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"DummyTag"},
      *
      *     @SWG\Parameter(
      *         name="Authorization",
@@ -421,16 +427,33 @@ class ProductController extends BaseController
      *         type="object",
      *         description="リクエストパラメータ",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductSearchRequest"
+     *             ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularSearchRequest"
      *         )
      *     ),
+     *     @SWG\Parameter(
+     *         in="query",
+     *         name="per_page",
+     *         required=false,
+     *         type="integer",
+     *         type="integer",
+     *         description="1ページの件数。パラメータで0を指定orパラメータを設定しなければ、ページネーションは機能しない<br/>
+                            ページネーションを機能させない場合、pageパラメータも無効となる",
+     *     ),
+     *     @SWG\Parameter(
+     *         in="query",
+     *         required=false,
+     *         name="page",
+     *         type="integer",
+     *         description="取得するページ番号"
+     *     ),
+     *
      *     @SWG\Response(
      *         response=200,
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 property="DummyResourceSnakePlural",
+     *                 ref="#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
      *             )
      *         )
      *     ),
@@ -463,15 +486,15 @@ class ProductController extends BaseController
      *     )
      * )
      *
-     * @param ProductService $service
-     * @param ProductSearchRequest $request
+     * @param DummyModelClassService $service
+     * @param DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return DummyResourceCamelSingularResourceCollection
      */
-    public function search(ProductService $service, ProductSearchRequest $request)
+    public function search(DummyModelClassService $service, DummyRelativeNamespaceDummyResourceCamelSingularSearchRequest $request)
     {
-        $products = $service->search($request);
+        $DummyModelVariable = $service->search($request->toArray());
 
-        return response()->json(compact('products'));
+        return new DummyResourceCamelSingularResourceCollection($DummyModelVariable);
     }
 }
