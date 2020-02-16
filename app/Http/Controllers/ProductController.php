@@ -470,6 +470,7 @@ class ProductController extends BaseController
      */
     public function search(ProductService $service, ProductSearchRequest $request)
     {
+        \Log::info('fyyy');
         $products = $service->search($request);
 
         return response()->json(compact('products'));
