@@ -48,11 +48,8 @@ trait BuildReplacementsTrate
         if (!$this->option('model')) {
             return $stub;
         }
-        \Log::info($name);
         $replaces = $this->buildCommonsReplacements([], $name);
-        \Log::info($replaces);
         $replaces = $this->buildDummiesReplacements($replaces, $name);
-        \Log::info($replaces);
         $replaces = array_filter($replaces, function ($v, $k) {
             return strncmp($k, 'Dummy', 5) === 0;
         }, \ARRAY_FILTER_USE_BOTH);
