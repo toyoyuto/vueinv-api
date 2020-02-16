@@ -1,0 +1,1050 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "\u30de\u30eb\u30b7\u30a7API\u30c9\u30ad\u30e5\u30e1\u30f3\u30c8",
+        "version": "1.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/api/DummyUrl": {
+            "get": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u4e00\u89a7",
+                "description": "RESOURCE\u4e00\u89a7\u3092\u8fd4\u3059\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakePlural": {
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u767b\u9332",
+                "description": "RESOURCE\u3092\u767b\u9332\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularStoreRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyModelClassResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/DummyUrl/{id}": {
+            "get": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u53d6\u5f97",
+                "description": "RESOURCE\u3092\u53d6\u5f97\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u66f4\u65b0",
+                "description": "RESOURCE\u3092\u66f4\u65b0\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u524a\u9664",
+                "description": "RESOURCE\u3092\u8ad6\u7406\u524a\u9664\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/DummyUrl/search": {
+            "post": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u691c\u7d22",
+                "description": "RESOURCE\u3092\u691c\u7d22\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularSearchRequest"
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "1\u30da\u30fc\u30b8\u306e\u4ef6\u6570\u3002\u30d1\u30e9\u30e1\u30fc\u30bf\u30670\u3092\u6307\u5b9aor\u30d1\u30e9\u30e1\u30fc\u30bf\u3092\u8a2d\u5b9a\u3057\u306a\u3051\u308c\u3070\u3001\u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u306f\u6a5f\u80fd\u3057\u306a\u3044<br/>\r\n                            \u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u3092\u6a5f\u80fd\u3055\u305b\u306a\u3044\u5834\u5408\u3001page\u30d1\u30e9\u30e1\u30fc\u30bf\u3082\u7121\u52b9\u3068\u306a\u308b",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "\u53d6\u5f97\u3059\u308b\u30da\u30fc\u30b8\u756a\u53f7",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakePlural": {
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u4e00\u89a7",
+                "description": "RESOURCE\u4e00\u89a7\u3092\u8fd4\u3059\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "products": {
+                                    "$ref": "#/definitions/ProductResourceCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u767b\u9332",
+                "description": "RESOURCE\u3092\u767b\u9332\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductStoreRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u53d6\u5f97",
+                "description": "RESOURCE\u3092\u53d6\u5f97\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u66f4\u65b0",
+                "description": "RESOURCE\u3092\u66f4\u65b0\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u524a\u9664",
+                "description": "RESOURCE\u3092\u8ad6\u7406\u524a\u9664\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ProductResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/products/search": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "RESOURCE\u691c\u7d22",
+                "description": "RESOURCE\u3092\u691c\u7d22\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductSearchRequest"
+                        },
+                        "type": "object"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "1\u30da\u30fc\u30b8\u306e\u4ef6\u6570\u3002\u30d1\u30e9\u30e1\u30fc\u30bf\u30670\u3092\u6307\u5b9aor\u30d1\u30e9\u30e1\u30fc\u30bf\u3092\u8a2d\u5b9a\u3057\u306a\u3051\u308c\u3070\u3001\u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u306f\u6a5f\u80fd\u3057\u306a\u3044<br/>\r\n                            \u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u3092\u6a5f\u80fd\u3055\u305b\u306a\u3044\u5834\u5408\u3001page\u30d1\u30e9\u30e1\u30fc\u30bf\u3082\u7121\u52b9\u3068\u306a\u308b",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "\u53d6\u5f97\u3059\u308b\u30da\u30fc\u30b8\u756a\u53f7",
+                        "required": false,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "products": {
+                                    "$ref": "#/definitions/ProductResourceCollection"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "DummySwaggerDefinitionsHeadDummyResourceCamelSingularResourceCollection": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+            }
+        },
+        "DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource": {
+            "type": "object"
+        },
+        "product": {
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "product_cd": {
+                    "description": "\u5546\u54c1CD",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u540d",
+                    "type": "string"
+                },
+                "product_category_id": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fcCD",
+                    "type": "integer"
+                },
+                "without_tax_sell_price": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "PagenationLinkResource": {
+            "description": "\u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u306e\u30ea\u30f3\u30af\u60c5\u5831",
+            "properties": {
+                "first": {
+                    "description": "\u5148\u982d\u30da\u30fc\u30b8\u3078\u306e\u30ea\u30f3\u30af",
+                    "type": "string",
+                    "format": "url"
+                },
+                "last": {
+                    "description": "\u672b\u5c3e\u30da\u30fc\u30b8\u3078\u306e\u30ea\u30f3\u30af",
+                    "type": "string",
+                    "format": "url"
+                },
+                "prev": {
+                    "description": "\u524d\u306e\u30da\u30fc\u30b8\u3078\u306e\u30ea\u30f3\u30af",
+                    "type": "string",
+                    "format": "url"
+                },
+                "next": {
+                    "description": "\u6b21\u306e\u30da\u30fc\u30b8\u3078\u306e\u30ea\u30f3\u30af",
+                    "type": "string",
+                    "format": "url"
+                }
+            },
+            "type": "object"
+        },
+        "PagenationMetaResource": {
+            "description": "\u30da\u30fc\u30b8\u30cd\u30fc\u30b7\u30e7\u30f3\u306e\u30e1\u30bf\u60c5\u5831",
+            "properties": {
+                "path": {
+                    "description": "\u30c7\u30fc\u30bf\u3092\u53d6\u5f97\u3057\u305f\u969b\u306b\u4f7f\u7528\u3057\u305fURI",
+                    "type": "string",
+                    "format": "url"
+                },
+                "per_page": {
+                    "description": "1\u30da\u30fc\u30b8\u3042\u305f\u308a\u306e\u4ef6\u6570",
+                    "type": "integer"
+                },
+                "current_page": {
+                    "description": "\u4eca\u53d6\u5f97\u3057\u3066\u3044\u308b\u30da\u30fc\u30b8\u756a\u53f7",
+                    "type": "integer"
+                },
+                "last_page": {
+                    "description": "\u6700\u5f8c\u306e\u30da\u30fc\u30b8\u756a\u53f7",
+                    "type": "integer"
+                },
+                "from": {
+                    "description": "\u53d6\u5f97\u3057\u305f\u30c7\u30fc\u30bf\u306e\u958b\u59cb\u5730\u70b9\u3092\u8868\u3059\u3002from~to\u3067\u3069\u306e\u7bc4\u56f2\u306e\u30c7\u30fc\u30bf\u3092\u53d6\u5f97\u3057\u305f\u304b\u5206\u304b\u308b\u3002",
+                    "type": "integer"
+                },
+                "to": {
+                    "description": "\u53d6\u5f97\u3057\u305f\u30c7\u30fc\u30bf\u306e\u7d42\u4e86\u5730\u70b9\u3092\u8868\u3059\u3002from~to\u3067\u3069\u306e\u7bc4\u56f2\u306e\u30c7\u30fc\u30bf\u3092\u53d6\u5f97\u3057\u305f\u304b\u5206\u304b\u308b\u3002",
+                    "type": "integer"
+                },
+                "total": {
+                    "description": "\u691c\u7d22\u6761\u4ef6\u306b\u8a72\u5f53\u3057\u305f\u4ef6\u6570",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -5,6 +5,7 @@ namespace App\Console\Commands\Make;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
+use Log;
 
 trait BuildReplacementsTrate
 {
@@ -43,9 +44,15 @@ trait BuildReplacementsTrate
         // DummyClass -> HogeController
         $stub = parent::buildClass($name);
 
+        // モデル指定のない場合はそのまま返す
+        if (!$this->option('model')) {
+            return $stub;
+        }
+        \Log::info($name);
         $replaces = $this->buildCommonsReplacements([], $name);
+        \Log::info($replaces);
         $replaces = $this->buildDummiesReplacements($replaces, $name);
-
+        \Log::info($replaces);
         $replaces = array_filter($replaces, function ($v, $k) {
             return strncmp($k, 'Dummy', 5) === 0;
         }, \ARRAY_FILTER_USE_BOTH);
@@ -85,45 +92,17 @@ trait BuildReplacementsTrate
 
         // ModelClassName
         $modelCalssName = $this->parseModel($this->option('model'));
-
+        \Log::info($modelCalssName);
         // ModelClass
         $modelClass = (new $modelCalssName());
 
         // Table
         $table = $modelClass->getTable();
 
+        \Log::info($table);
         // AllColumns
         $allColumns     = DB::select("desc {$table}");
-        $comments       = DB::select('SELECT COLUMN_NAME,COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = database() AND TABLE_NAME=?', [$table]);
-        $columnComments = [];
-
-        foreach ($comments as $comment) {
-            $columnComments[$comment->COLUMN_NAME] = $comment->COLUMN_COMMENT;
-        }
-
-        foreach ($allColumns as $column) {
-            // 情報追加
-            $column->ColumnType = Schema::getColumnType($table, $column->Field);
-            $column->ColumnSize = preg_match('/\(([0-9]+)\)/', $column->Type, $matches) ? $matches[1] : '';
-            $column->Commnet    = $columnComments[$column->Field] ?? '';
-        }
-
-        // Columns
-        $columns = [];
-
-        foreach ($allColumns as $column) {
-            if (in_array($column->Field, [
-                'created_by',
-                'updated_by',
-                'created_at',
-                'updated_at',
-                'deleted_at',
-            ], true)) {
-                continue;
-            }
-            $columns[] = $column;
-        }
-
+        
         return array_merge($replaces, [
             'DummyRelativeNamespace'      => $relativeNamespace,
             'DummySwaggerDefinitionsHead' => $swaggerDefinitionsHead,
@@ -141,7 +120,6 @@ trait BuildReplacementsTrate
             'ModelClassName' => $modelCalssName,
             'ModelClass'     => $modelClass,
             'Table'          => $table,
-            'Columns'        => $columns,
             'AllColumns'     => $allColumns,
         ]);
     }

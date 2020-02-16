@@ -3,15 +3,15 @@
 namespace DummyNamespace;
 
 use DummyFullModelClass;
-use App\ValueObjects\DummyModelClassStoreValue;
-use App\ValueObjects\DummyModelClassUpdateValue;
+use App\Http\Requests\DummyModelClassStoreRequest;
+use App\Http\Requests\DummyModelClassUpdateRequest;
+use App\Http\Requests\DummyModelClassSearchRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Throwable;
 
-class DummyClass extends BaseService
+class DummyClass
 {
     /**
      * 検索を行う
@@ -61,13 +61,13 @@ class DummyClass extends BaseService
     /**
      * 登録、更新
      *
-     * @param DummyModelClassStoreValue $value
+     * @param DummyModelClassStoreRequest $value
      *
      * @throws Throwable
      *
      * @return DummyModelClass
      */
-    public function store(DummyModelClassStoreValue $value)
+    public function store(DummyModelClassStoreRequest $value)
     {
         $DummyModelVariable = new DummyModelClass();
 
@@ -81,14 +81,14 @@ class DummyClass extends BaseService
     /**
      * 更新
      *
-     * @param DummyModelClassUpdateValue $value
+     * @param DummyModelClassUpdateRequest $value
      * @param DummyModelClass $DummyModelVariable
      *
      * @throws Throwable
      *
      * @return DummyModelClass
      */
-    public function update(DummyModelClassUpdateValue $value, DummyModelClass $DummyModelVariable)
+    public function update(DummyModelClassUpdateRequest $value, DummyModelClass $DummyModelVariable)
     {
         DB::transaction(function () use (&$DummyModelVariable, $value): void {
             $DummyModelVariable->fill($value->toArray())->save();
@@ -118,12 +118,13 @@ class DummyClass extends BaseService
     /**
      * 検索
      *
-     * @param array $params
+     * @param DummyModelClassSearchRequest $value
      *
-     * @return LengthAwarePaginator|Collection
+     * @return Collection
      */
-    public function search(array $params)
+    public function search(DummyModelClassSearchRequest $value)
     {
-        return parent::search($params);
+        $query   = $this->query($value->toArray());
+        return $query->get();
     }
 }

@@ -37,7 +37,9 @@ class Service extends GeneratorCommand
      */
     protected function getStub()
     {
-        return __DIR__ . '/stubs/service.stub';
+        return $this->option('model')
+            ? __DIR__ . '/stubs/service.stub'
+            : __DIR__ . '/stubs/service_default.stub';
     }
 
     /**

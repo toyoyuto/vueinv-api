@@ -15,7 +15,7 @@ class Controller extends ControllerMakeCommand
         if (parent::handle() === false) {
             return;
         }
-
+        \Log::info($this->option('model'));
         if ($this->option('model')) {
             $name = $this->getModuleName();
             $path = $this->getModuleRelativePath();
@@ -24,39 +24,16 @@ class Controller extends ControllerMakeCommand
 
             $this->call('make:request', [
                 'name'    => "{$path}{$name}SearchRequest",
-                '--model' => $this->option('model'),
             ]);
             $this->call('make:request', [
                 'name'    => "{$path}{$name}StoreRequest",
-                '--model' => $this->option('model'),
             ]);
             $this->call('make:request', [
                 'name'    => "{$path}{$name}UpdateRequest",
-                '--model' => $this->option('model'),
-            ]);
-
-            $this->call('make:resource', [
-                'name'    => "{$path}{$name}Resource",
-                '--model' => $this->option('model'),
-            ]);
-            $this->call('make:resource', [
-                'name'    => "{$path}{$name}ResourceCollection",
-                '--model' => $this->option('model'),
             ]);
 
             $this->call('make:service', [
                 'name'                   => "{$modelClass}Service",
-                '--model'                => $this->option('model'),
-                '--module_relative_path' => $path,
-            ]);
-
-            $this->call('make:valueObject', [
-                'name'                   => "{$modelClass}StoreValue",
-                '--model'                => $this->option('model'),
-                '--module_relative_path' => $path,
-            ]);
-            $this->call('make:valueObject', [
-                'name'                   => "{$modelClass}UpdateValue",
                 '--model'                => $this->option('model'),
                 '--module_relative_path' => $path,
             ]);
@@ -100,7 +77,7 @@ class Controller extends ControllerMakeCommand
      */
     protected function getStub()
     {
-        if ($this->option('api') && $this->option('model')) {
+        if ($this->option('model')) {
             return __DIR__ . '/stubs/controller.model.api.stub';
         }
 
