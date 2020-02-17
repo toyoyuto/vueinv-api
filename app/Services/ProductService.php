@@ -26,11 +26,14 @@ class ProductService
 
         // 同一
         $query = Product::whereSame([
-            'id' => $params->get('id'),
+            'id'                  => $params->get('id'),
+            'product_category_id' => $params->get('product_category_id'),
         ]);
 
         // 部分一致
         $query->whereMatch([
+            'name'       => $params->get('name'),
+            'product_cd' => $params->get('product_cd'),
         ]);
 
         // 前方一致
@@ -52,6 +55,10 @@ class ProductService
             'updated_at' => [
                 'first' => $params->get('updated_at_first'),
                 'last'  => $params->get('updated_at_last'),
+            ],
+            'without_tax_sell_price' => [
+                'first' => $params->get('without_tax_sell_price_first'),
+                'last'  => $params->get('without_tax_sell_price_last'),
             ],
         ]);
 

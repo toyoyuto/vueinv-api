@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $without_tax_sell_price 販売単価(税抜き)
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property string|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\ORM\ProductCategory $productCategory
  *
  * @method static bool|null forceDelete()
@@ -25,10 +25,15 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\BaseModel whereForwardMatch($array)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\BaseModel whereInclude($array)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\BaseModel whereMatch($array)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereProductCategoryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereProductCd($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\BaseModel whereRange($array)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\BaseModel whereSame($array)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product whereWithoutTaxSellPrice($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product withTrashed()

@@ -8,8 +8,9 @@ class ProductSearchRequest extends BaseRequest
      * @SWG\Property(property="id",description="ID", type="integer")
      * @SWG\Property(property="product_cd",description="商品CD", type="string")
      * @SWG\Property(property="name",description="商品名", type="string")
-     * @SWG\Property(property="product_category_id",description="商品カテゴリーCD", type="integer")
-     * @SWG\Property(property="without_tax_sell_price",description="販売単価(税抜き)", type="string")
+     * @SWG\Property(property="product_category_id",description="商品カテゴリーID", type="integer")
+     * @SWG\Property(property="without_tax_sell_price_first",description="販売単価(税抜き)下限", type="integer")
+     * @SWG\Property(property="without_tax_sell_price_last",description="販売単価(税抜き)上限", type="integer")
      */
 
     /**
@@ -29,14 +30,13 @@ class ProductSearchRequest extends BaseRequest
      */
     public function rules()
     {
-        \Log::info('fy');
-
         return [
-            'id'                     => ['nullable', 'integer'],
-            'product_cd'             => ['nullable', 'max:10'],
-            'name'                   => ['nullable', 'max:255'],
-            'product_category_id'    => ['nullable', 'integer'],
-            'without_tax_sell_price' => ['nullable', 'integer', 'max:11'],
+            'id'                           => ['nullable', 'integer'],
+            'product_cd'                   => ['nullable'],
+            'name'                         => ['nullable', 'max:255'],
+            'product_category_id'          => ['nullable', 'integer'],
+            'without_tax_sell_price_first' => ['nullable', 'integer'],
+            'without_tax_sell_price_last'  => ['nullable', 'integer'],
         ];
     }
 
