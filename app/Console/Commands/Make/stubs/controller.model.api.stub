@@ -305,7 +305,7 @@ class DummyClass extends BaseController
      *
      * @throws Throwable
      *
-     * @return DummyResourceCamelSingularResource
+     * @return \Illuminate\Http\Response
      */
     public function update(DummyModelClassService $service, DummyResourceCamelSingularUpdateRequest $request, DummyModelClass $DummyModelVariable)
     {
@@ -389,7 +389,7 @@ class DummyClass extends BaseController
      *
      * @throws Throwable
      *
-     * @return DummyResourceCamelSingularResource
+     * @return \Illuminate\Http\Response
      */
     public function destroy(DummyModelClassService $service, DummyModelClass $DummyModelVariable)
     {

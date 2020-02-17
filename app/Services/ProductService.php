@@ -97,6 +97,8 @@ class ProductService
      */
     public function update(ProductUpdateRequest $value, Product $product)
     {
+        \Log::info($value);
+        \Log::info($product->id);
         DB::transaction(function () use (&$product, $value): void {
             $product->fill($value->toArray())->save();
         });

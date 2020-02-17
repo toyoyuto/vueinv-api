@@ -305,7 +305,7 @@ class ProductController extends BaseController
      *
      * @throws Throwable
      *
-     * @return ProductResource
+     * @return \Illuminate\Http\Response
      */
     public function update(ProductService $service, ProductUpdateRequest $request, Product $product)
     {
@@ -389,7 +389,7 @@ class ProductController extends BaseController
      *
      * @throws Throwable
      *
-     * @return ProductResource
+     * @return \Illuminate\Http\Response
      */
     public function destroy(ProductService $service, Product $product)
     {
