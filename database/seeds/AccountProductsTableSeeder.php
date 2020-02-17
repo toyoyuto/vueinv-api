@@ -11,17 +11,6 @@ class AccountProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        use SoftDeletes;
 
-        /**
-         * モデルと関連しているテーブル
-         *
-         * @var string
-         */
-        protected $table = 'account_methods';
-    
-        protected $fillable = [
-            'name',
-        ];
     }
 }

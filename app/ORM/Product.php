@@ -2,7 +2,6 @@
 
 namespace App\ORM;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
@@ -36,7 +35,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product withoutTrashed()
  * @mixin \Eloquent
  */
-class Product extends Model
+class Product extends BaseModel
 {
     use SoftDeletes;
 
