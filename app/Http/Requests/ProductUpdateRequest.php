@@ -32,7 +32,7 @@ class ProductUpdateRequest extends BaseRequest
             'product_cd'                   => ['nullable'],
             'name'                         => ['nullable', 'max:255'],
             'product_category_id'          => ['nullable', 'integer'],
-            'without_tax_sell_price' => ['nullable', 'integer']
+            'without_tax_sell_price'       => ['nullable', 'integer'],
         ];
     }
 

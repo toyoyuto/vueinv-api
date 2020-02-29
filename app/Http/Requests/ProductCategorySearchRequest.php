@@ -4,7 +4,6 @@ namespace App\Http\Requests;
 
 class ProductCategorySearchRequest extends BaseRequest
 {
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -14,7 +13,7 @@ class ProductCategorySearchRequest extends BaseRequest
     {
         return true;
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *

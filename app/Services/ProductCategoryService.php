@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use App\ORM\ProductCategory;
+use App\Http\Requests\ProductCategorySearchRequest;
 use App\Http\Requests\ProductCategoryStoreRequest;
 use App\Http\Requests\ProductCategoryUpdateRequest;
-use App\Http\Requests\ProductCategorySearchRequest;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Collection;
+use App\ORM\ProductCategory;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Throwable;
 
 class ProductCategoryService
@@ -125,6 +125,7 @@ class ProductCategoryService
     public function search(ProductCategorySearchRequest $value)
     {
         $query   = $this->query($value->toArray());
+
         return $query->get();
     }
 }

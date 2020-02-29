@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
  * @property-read \App\ORM\ProductCategory $productCategory
+ * @property-read \App\ORM\ProductImage $productImage
  *
  * @method static bool|null forceDelete()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\ORM\Product newModelQuery()

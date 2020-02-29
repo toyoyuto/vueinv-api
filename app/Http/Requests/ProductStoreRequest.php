@@ -32,7 +32,7 @@ class ProductStoreRequest extends BaseRequest
             'product_cd'                   => ['required'],
             'name'                         => ['required', 'max:255'],
             'product_category_id'          => ['required', 'integer'],
-            'without_tax_sell_price' => ['required', 'integer']
+            'without_tax_sell_price'       => ['required', 'integer'],
         ];
     }
 

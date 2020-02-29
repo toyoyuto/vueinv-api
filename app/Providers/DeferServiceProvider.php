@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use App\Services\ProductService;
 use App\Services\ProductCategoryService;
 use App\Services\ProductImageService;
+use App\Services\ProductService;
 use Illuminate\Support\ServiceProvider;
 
 class DeferServiceProvider extends ServiceProvider
