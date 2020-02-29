@@ -18,3 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::apiResource('products', 'ProductController');
 Route::post('/products/search', 'ProductController@search');
+
+Route::apiResource('product_categories', 'ProductCategoryController');
+Route::post('/product_categories/search', 'ProductCategoryController@search');
+
+Route::apiResource('product_images', 'ProductImageController');
+Route::post('/product_images/search', 'ProductImageController@search');

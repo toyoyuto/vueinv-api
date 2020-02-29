@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Services\ProductService;
+use App\Services\ProductCategoryService;
+use App\Services\ProductImageService;
 use Illuminate\Support\ServiceProvider;
 
 class DeferServiceProvider extends ServiceProvider
@@ -33,6 +35,12 @@ class DeferServiceProvider extends ServiceProvider
         $this->app->singleton(ProductService::class, function ($app) {
             return new ProductService();
         });
+        $this->app->singleton(ProductCategoryService::class, function ($app) {
+            return new ProductCategoryService();
+        });
+        $this->app->singleton(ProductImageService::class, function ($app) {
+            return new ProductImageService();
+        });
     }
 
     /**
@@ -44,6 +52,8 @@ class DeferServiceProvider extends ServiceProvider
     {
         return [
             ProductService::class,
+            ProductCategoryService::class,
+            ProductImageService::class,
         ];
     }
 }

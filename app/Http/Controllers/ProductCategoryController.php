@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductSearchRequest;
-use App\Http\Requests\ProductStoreRequest;
-use App\Http\Requests\ProductUpdateRequest;
-use App\ORM\Product;
-use App\Services\ProductService;
+use App\Http\Requests\ProductCategorySearchRequest;
+use App\Http\Requests\ProductCategoryStoreRequest;
+use App\Http\Requests\ProductCategoryUpdateRequest;
+use App\ORM\ProductCategory;
+use App\Services\ProductCategoryService;
 use Throwable;
 
-class ProductController extends BaseController
+class ProductCategoryController extends BaseController
 {
     /**
      * @SWG\Get(
-     *     path="/api/products",
+     *     path="/api/product_categories",
      *     summary="RESOURCE一覧",
      *     description="RESOURCE一覧を返す。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *     @SWG\Parameter(
      *         name="Authorization",
@@ -32,8 +32,8 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 property="product_categories",
+     *                 ref="#/definitions/product_category"
      *             )
      *         )
      *     ),
@@ -72,19 +72,19 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::with('productCategory')->orderBy('id')->get();
+        $productCategorys = ProductCategory::orderBy('id')->get();
 
-        return response()->json(compact('products'));
+        return response()->json(compact('productCategorys'));
     }
 
     /**
      * @SWG\Post(
-     *     path="/api/products",
+     *     path="/api/product_categories",
      *     summary="RESOURCE登録",
      *     description="RESOURCEを登録する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -100,7 +100,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductStoreRequest"
+     *             ref="#/definitions/ProductCategoryStoreRequest"
      *         )
      *     ),
      *
@@ -109,9 +109,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="product_category",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/product_category"
      *             )
      *         )
      *     ),
@@ -146,28 +146,28 @@ class ProductController extends BaseController
      *
      * Store a newly created resource in storage.
      *
-     * @param ProductService $service
-     * @param ProductStoreRequest $request
+     * @param ProductCategoryService $service
+     * @param ProductCategoryStoreRequest $request
      *
      * @throws Throwable
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductService $service, ProductStoreRequest $request)
+    public function store(ProductCategoryService $service, ProductCategoryStoreRequest $request)
     {
-        $product = $service->store($request);
+        $productCategory = $service->store($request);
 
-        return response()->json(compact('product'));
+        return response()->json(compact('productCategory'));
     }
 
     /**
      * @SWG\Get(
-     *     path="/api/products/{id}",
+     *     path="/api/product_categories/{id}",
      *     summary="RESOURCE取得",
      *     description="RESOURCEを取得する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -183,9 +183,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="product_category",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/product_category"
      *             )
      *         )
      *     ),
@@ -220,23 +220,23 @@ class ProductController extends BaseController
      *
      * Display the specified resource.
      *
-     * @param Product $product
+     * @param ProductCategory $productCategory
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(ProductCategory $productCategory)
     {
-        return response()->json(compact('product'));
+        return response()->json(compact('productCategory'));
     }
 
     /**
      * @SWG\Put(
-     *     path="/api/products/{id}",
+     *     path="/api/product_categories/{id}",
      *     summary="RESOURCE更新",
      *     description="RESOURCEを更新する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -253,7 +253,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductUpdateRequest"
+     *             ref="#/definitions/ProductCategoryUpdateRequest"
      *         )
      *     ),
      *
@@ -262,9 +262,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="product_category",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/product_category"
      *             )
      *         )
      *     ),
@@ -299,29 +299,29 @@ class ProductController extends BaseController
      *
      * Update the specified resource in storage.
      *
-     * @param ProductService $service
-     * @param ProductUpdateRequest $request
-     * @param Product $product
+     * @param ProductCategoryService $service
+     * @param ProductCategoryUpdateRequest $request
+     * @param ProductCategory $productCategory
      *
      * @throws Throwable
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductService $service, ProductUpdateRequest $request, Product $product)
+    public function update(ProductCategoryService $service, ProductCategoryUpdateRequest $request, ProductCategory $productCategory)
     {
-        $product = $service->update($request, $product);
+        $productCategory = $service->update($request, $productCategory);
 
-        return response()->json(compact('product'));
+        return response()->json(compact('productCategory'));
     }
 
     /**
      * @SWG\Delete(
-     *     path="/api/products/{id}",
+     *     path="/api/product_categories/{id}",
      *     summary="RESOURCE削除",
      *     description="RESOURCEを論理削除する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *    @SWG\Parameter(
      *         name="Authorization",
@@ -338,7 +338,7 @@ class ProductController extends BaseController
      *         required=true,
      *         type="object",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductUpdateRequest"
+     *             ref="#/definitions/ProductCategoryUpdateRequest"
      *         )
      *     ),
      *
@@ -347,9 +347,9 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="product",
+     *                 property="product_category",
      *                 type="object",
-     *                 ref="#/definitions/ProductResource"
+     *                 ref="#/definitions/ProductCategoryResource"
      *             )
      *         )
      *     ),
@@ -384,28 +384,28 @@ class ProductController extends BaseController
      *
      * Remove the specified resource from storage.
      *
-     * @param ProductService $service
-     * @param Product $product
+     * @param ProductCategoryService $service
+     * @param ProductCategory $productCategory
      *
      * @throws Throwable
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductService $service, Product $product)
+    public function destroy(ProductCategoryService $service, ProductCategory $productCategory)
     {
-        $product = $service->destroy($product);
+        $productCategory = $service->destroy($productCategory);
 
-        return response()->json(compact('product'));
+        return response()->json(compact('productCategory'));
     }
 
     /**
      * @SWG\Post(
-     *     path="/api/products/search",
+     *     path="/api/product_categories/search",
      *     summary="RESOURCE検索",
      *     description="RESOURCEを検索する。",
      *     consumes={"application/json"},
      *     produces={"application/json"},
-     *     tags={"Products"},
+     *     tags={"ProductCategories"},
      *
      *     @SWG\Parameter(
      *         name="Authorization",
@@ -421,7 +421,7 @@ class ProductController extends BaseController
      *         type="object",
      *         description="リクエストパラメータ",
      *         @SWG\Schema(
-     *             ref="#/definitions/ProductSearchRequest"
+     *             ref="#/definitions/ProductCategorySearchRequest"
      *         )
      *     ),
      *     @SWG\Response(
@@ -429,8 +429,8 @@ class ProductController extends BaseController
      *         description="Success",
      *         @SWG\Schema(
      *             @SWG\Property(
-     *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 property="product_categories",
+     *                 ref="#/definitions/product_category"
      *             )
      *         )
      *     ),
@@ -463,15 +463,15 @@ class ProductController extends BaseController
      *     )
      * )
      *
-     * @param ProductService $service
-     * @param ProductSearchRequest $request
+     * @param ProductCategoryService $service
+     * @param ProductCategorySearchRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function search(ProductService $service, ProductSearchRequest $request)
+    public function search(ProductCategoryService $service, ProductCategorySearchRequest $request)
     {
-        $products = $service->search($request);
+        $productCategorys = $service->search($request);
 
-        return response()->json(compact('products'));
+        return response()->json(compact('productCategorys'));
     }
 }

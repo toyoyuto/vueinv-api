@@ -62,6 +62,8 @@ class ProductService
             ],
         ]);
 
+        $query->with(['productCategory', 'productImage']);
+
         return $query;
     }
 

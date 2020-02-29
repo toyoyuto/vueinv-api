@@ -65,4 +65,12 @@ class Product extends BaseModel
     {
         return $this->belongsTo(ProductCategory::class);
     }
+
+    /**
+     * 商品→商品イメージを取得
+     */
+    public function productImage()
+    {
+        return $this->hasOne(ProductImage::class);
+    }
 }
