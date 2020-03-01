@@ -39,7 +39,6 @@ class SendTestMail extends Command
      */
     public function handle()
     {
-        // とりあえず携帯に送信
-        Mail::to('toyoyuto618@docomo.ne.jp')->send(new TestMail());
+        Mail::to(env('MAIL_TO_ADDRESS'))->send(new TestMail());
     }
 }
