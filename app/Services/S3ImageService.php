@@ -75,7 +75,7 @@ class S3ImageService
         $base64 = str_replace(' ', '+', $base64);
 
         // 正規表現のチェック＆base64の実データを抜き出す
-        preg_match('@^data:image/jpeg;base64,(.*)$@', $base64, $matches);
+        preg_match('@^data:image/(jpg|jpeg);base64,(.*)$@', $base64, $matches);
 
         return $matches;
     }
@@ -89,11 +89,7 @@ class S3ImageService
      */
     public function getUrl(string $path): string
     {
-        $url = Storage::disk('s3')
+        return Storage::disk('s3')
             ->url($path);
-            
-        return $url;
     }
-
-
 }

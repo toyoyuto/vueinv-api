@@ -1,10 +1,10 @@
 {
     "swagger": "2.0",
     "paths": {
-        "/api/DummyUrl": {
+        "/api/product_categories": {
             "get": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u4e00\u89a7",
                 "description": "RESOURCE\u4e00\u89a7\u3092\u8fd4\u3059\u3002",
@@ -28,8 +28,8 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakePlural": {
-                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                "product_categories": {
+                                    "$ref": "#/definitions/product_category"
                                 }
                             }
                         }
@@ -68,7 +68,7 @@
             },
             "post": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u767b\u9332",
                 "description": "RESOURCE\u3092\u767b\u9332\u3059\u308b\u3002",
@@ -92,7 +92,7 @@
                         "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularStoreRequest"
+                            "$ref": "#/definitions/ProductCategoryStoreRequest"
                         },
                         "type": "object"
                     }
@@ -102,9 +102,9 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakeSingular": {
+                                "product_category": {
                                     "type": "object",
-                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                    "$ref": "#/definitions/product_category"
                                 }
                             }
                         }
@@ -142,10 +142,10 @@
                 }
             }
         },
-        "/api/DummyUrl/{id}": {
+        "/api/product_categories/{id}": {
             "get": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u53d6\u5f97",
                 "description": "RESOURCE\u3092\u53d6\u5f97\u3059\u308b\u3002",
@@ -176,9 +176,9 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakeSingular": {
+                                "product_category": {
                                     "type": "object",
-                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                    "$ref": "#/definitions/product_category"
                                 }
                             }
                         }
@@ -217,7 +217,7 @@
             },
             "put": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u66f4\u65b0",
                 "description": "RESOURCE\u3092\u66f4\u65b0\u3059\u308b\u3002",
@@ -248,7 +248,7 @@
                         "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                            "$ref": "#/definitions/ProductCategoryUpdateRequest"
                         },
                         "type": "object"
                     }
@@ -258,9 +258,9 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakeSingular": {
+                                "product_category": {
                                     "type": "object",
-                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                    "$ref": "#/definitions/product_category"
                                 }
                             }
                         }
@@ -299,7 +299,7 @@
             },
             "delete": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u524a\u9664",
                 "description": "RESOURCE\u3092\u8ad6\u7406\u524a\u9664\u3059\u308b\u3002",
@@ -330,7 +330,7 @@
                         "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                            "$ref": "#/definitions/ProductCategoryUpdateRequest"
                         },
                         "type": "object"
                     }
@@ -340,9 +340,9 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakeSingular": {
+                                "product_category": {
                                     "type": "object",
-                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+                                    "$ref": "#/definitions/ProductCategoryResource"
                                 }
                             }
                         }
@@ -380,10 +380,10 @@
                 }
             }
         },
-        "/api/DummyUrl/search": {
+        "/api/product_categories/search": {
             "post": {
                 "tags": [
-                    "DummyTag"
+                    "ProductCategories"
                 ],
                 "summary": "RESOURCE\u691c\u7d22",
                 "description": "RESOURCE\u3092\u691c\u7d22\u3059\u308b\u3002",
@@ -407,7 +407,7 @@
                         "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularSearchRequest"
+                            "$ref": "#/definitions/ProductCategorySearchRequest"
                         },
                         "type": "object"
                     }
@@ -417,8 +417,8 @@
                         "description": "Success",
                         "schema": {
                             "properties": {
-                                "DummyResourceSnakePlural": {
-                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                "product_categories": {
+                                    "$ref": "#/definitions/product_category"
                                 }
                             }
                         }
@@ -910,7 +910,1040 @@
                     }
                 }
             }
+        },
+        "/api/product_images": {
+            "get": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u4e00\u89a7",
+                "description": "RESOURCE\u4e00\u89a7\u3092\u8fd4\u3059\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_images": {
+                                    "$ref": "#/definitions/product_image"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u767b\u9332",
+                "description": "RESOURCE\u3092\u767b\u9332\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductImageStoreRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_image": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/product_image"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product_images/{id}": {
+            "get": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u53d6\u5f97",
+                "description": "RESOURCE\u3092\u53d6\u5f97\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_image": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/product_image"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u66f4\u65b0",
+                "description": "RESOURCE\u3092\u66f4\u65b0\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductImageUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_image": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/product_image"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u524a\u9664",
+                "description": "RESOURCE\u3092\u8ad6\u7406\u524a\u9664\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductImageUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_image": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/ProductImageResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/product_images/search": {
+            "post": {
+                "tags": [
+                    "ProductImages"
+                ],
+                "summary": "RESOURCE\u691c\u7d22",
+                "description": "RESOURCE\u3092\u691c\u7d22\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ProductImageSearchRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "product_images": {
+                                    "$ref": "#/definitions/product_image"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/DummyUrl": {
+            "get": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u4e00\u89a7",
+                "description": "RESOURCE\u4e00\u89a7\u3092\u8fd4\u3059\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakePlural": {
+                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u767b\u9332",
+                "description": "RESOURCE\u3092\u767b\u9332\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularStoreRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/DummyUrl/{id}": {
+            "get": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u53d6\u5f97",
+                "description": "RESOURCE\u3092\u53d6\u5f97\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u66f4\u65b0",
+                "description": "RESOURCE\u3092\u66f4\u65b0\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u524a\u9664",
+                "description": "RESOURCE\u3092\u8ad6\u7406\u524a\u9664\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "RESOURCEID",
+                        "required": true,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularUpdateRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakeSingular": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularResource"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/DummyUrl/search": {
+            "post": {
+                "tags": [
+                    "DummyTag"
+                ],
+                "summary": "RESOURCE\u691c\u7d22",
+                "description": "RESOURCE\u3092\u691c\u7d22\u3059\u308b\u3002",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "\u8a8d\u8a3c\u30c8\u30fc\u30af\u30f3",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Request",
+                        "in": "body",
+                        "description": "\u30ea\u30af\u30a8\u30b9\u30c8\u30d1\u30e9\u30e1\u30fc\u30bf",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/DummySwaggerDefinitionsHeadDummyResourceCamelSingularSearchRequest"
+                        },
+                        "type": "object"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "properties": {
+                                "DummyResourceSnakePlural": {
+                                    "$ref": "#/definitions/DummyResourceSnakeSingular"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "properties": {
+                                "message": {
+                                    "description": "Unauthenticated.",
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Unprocessable Entity",
+                        "schema": {
+                            "properties": {
+                                "messages": {
+                                    "description": "\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8\u4e00\u89a7",
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                },
+                                "errors": {
+                                    "description": "\u9805\u76ee\u5225\u30a8\u30e9\u30fc\u30e1\u30c3\u30bb\u30fc\u30b8",
+                                    "type": "array",
+                                    "items": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
-    "definitions": {}
+    "definitions": {
+        "ProductImageUpdateRequest": {
+            "properties": {
+                "product_id": {
+                    "description": "\u5546\u54c1ID",
+                    "type": "integer"
+                },
+                "image": {
+                    "description": "\u5546\u54c1\u753b\u50cfbase64",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ProductStoreRequest": {
+            "properties": {
+                "product_cd": {
+                    "description": "\u5546\u54c1CD",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u540d",
+                    "type": "string"
+                },
+                "product_category_id": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fcID",
+                    "type": "integer"
+                },
+                "without_tax_sell_price_first": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "ProductSearchRequest": {
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "product_cd": {
+                    "description": "\u5546\u54c1CD",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u540d",
+                    "type": "string"
+                },
+                "product_category_id": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fcID",
+                    "type": "integer"
+                },
+                "without_tax_sell_price_first": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)\u4e0b\u9650",
+                    "type": "integer"
+                },
+                "without_tax_sell_price_last": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)\u4e0a\u9650",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "ProductImageStoreRequest": {
+            "properties": {
+                "product_id": {
+                    "description": "\u5546\u54c1ID",
+                    "type": "integer"
+                },
+                "image": {
+                    "description": "\u5546\u54c1\u753b\u50cfbase64",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ProductUpdateRequest": {
+            "properties": {
+                "product_cd": {
+                    "description": "\u5546\u54c1CD",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u540d",
+                    "type": "string"
+                },
+                "product_category_id": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fcID",
+                    "type": "integer"
+                },
+                "without_tax_sell_price_first": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        },
+        "product": {
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "product_cd": {
+                    "description": "\u5546\u54c1CD",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u540d",
+                    "type": "string"
+                },
+                "product_category_id": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fcID",
+                    "type": "integer"
+                },
+                "without_tax_sell_price_first": {
+                    "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
+                    "type": "integer"
+                }
+            },
+            "type": "object"
+        }
+    }
 }
