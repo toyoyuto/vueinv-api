@@ -4,6 +4,7 @@ namespace App\ORM;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
+use App\Services\S3ImageService;
 
 /**
  * App\ORM\ProductImage
@@ -62,7 +63,10 @@ class ProductImage extends BaseModel
      */
     public function getUrlAttribute()
     {
-        return Storage::disk('s3')->url($this->attributes['path']);
+        $url = resolve(S3ImageService::class)
+            ->getUrl($this->attributes['path']);
+
+        return $url;
     }
 
     /**
@@ -72,10 +76,9 @@ class ProductImage extends BaseModel
      */
     public function getBase64Attribute()
     {
-        $storage   = Storage::disk('s3');
-        $mime_type = $storage->mimeType($this->attributes['path']);
-        $base64    = base64_encode($storage->get($this->attributes['path']));
+        $base64 = resolve(S3ImageService::class)
+            ->getImage($this->attributes['path']);
 
-        return "data:{$mime_type};base64,{$base64}";
+        return $base64;
     }
 }

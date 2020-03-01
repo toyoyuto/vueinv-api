@@ -72,7 +72,9 @@ class ProductController extends BaseController
      */
     public function index()
     {
-        $products = Product::with('productCategory')->orderBy('id')->get();
+        $products = Product::with(['productCategory', 'productImage'])
+            ->orderBy('id')
+            ->get();
 
         return response()->json(compact('products'));
     }
