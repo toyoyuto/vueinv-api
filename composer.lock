@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91c567e75d1a687023209911636a5219",
+    "content-hash": "b96fa84a5ef836e4a774f9fa08e3ff2d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.133.25",
+            "version": "3.133.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "feeb21bb641d45f16c156ca1fa6cdaf857cd5424"
+                "reference": "0bccb2841d035fe983a811b964d3b485171c0406"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/feeb21bb641d45f16c156ca1fa6cdaf857cd5424",
-                "reference": "feeb21bb641d45f16c156ca1fa6cdaf857cd5424",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/0bccb2841d035fe983a811b964d3b485171c0406",
+                "reference": "0bccb2841d035fe983a811b964d3b485171c0406",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +140,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2020-02-28T19:15:36+00:00"
+            "time": "2020-02-29T00:41:14+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
