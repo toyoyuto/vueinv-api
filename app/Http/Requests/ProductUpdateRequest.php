@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 /**
  * @SWG\Definition(definition="ProductUpdateRequest", type="object")
  */
-
 class ProductUpdateRequest extends BaseRequest
 {
     /**

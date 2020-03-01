@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 /**
  * @SWG\Definition(definition="ProductImageUpdateRequest", type="object")
  */
-
 class ProductImageUpdateRequest extends BaseRequest
 {
     /**
@@ -39,7 +38,7 @@ class ProductImageUpdateRequest extends BaseRequest
     public function attributes()
     {
         return [
-            'image' => '商品画像'
+            'image' => '商品画像',
         ];
     }
 }

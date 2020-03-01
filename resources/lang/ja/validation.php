@@ -127,6 +127,6 @@ return [
         'without_tax_sell_price' => '販売価格',
         'email'                  => 'メールアドレス',
         'password'               => 'パスワード',
-        'product_id' =>'商品ID'
+        'product_id'             => '商品ID',
     ],
 ];

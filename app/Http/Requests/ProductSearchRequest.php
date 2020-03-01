@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-
 /**
  * @SWG\Definition(definition="ProductSearchRequest", type="object")
  */
-
 class ProductSearchRequest extends BaseRequest
 {
     /**
