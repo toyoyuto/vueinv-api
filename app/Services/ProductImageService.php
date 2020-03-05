@@ -61,18 +61,18 @@ class ProductImageService
     /**
      * 登録、更新
      *
-     * @param ProductImageStoreRequest $value
+     * @param array $value
      *
      * @throws Throwable
      *
      * @return ProductImage
      */
-    public function store(ProductImageStoreRequest $value)
+    public function store(array $value)
     {
         $productImage = new ProductImage();
 
         DB::transaction(function () use (&$productImage, $value): void {
-            $productImage->fill($value->toArray())->save();
+            $productImage->fill($value)->save();
         });
 
         return $productImage;

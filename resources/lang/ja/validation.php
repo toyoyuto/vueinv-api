@@ -92,6 +92,9 @@ return [
     'barcode_start_position' => 'ラベル指定が「:label_type」のため、:attributeは1～:start_position_cellingにしてください。',
     'tel'                    => ':attributeを正しく入力して下さい。',
 
+    // 以下、CustomValidation.phpのエラーメッセージ
+    'image_base64'           => '指定された画像ファイルは適用外です。',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

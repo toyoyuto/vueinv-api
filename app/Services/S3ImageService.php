@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Storage;
+use Log;
 
 class S3ImageService
 {
@@ -21,7 +22,7 @@ class S3ImageService
         // 保存
         Storage::disk('s3')->put($path, $data);
     }
-
+    
     /**
      * S3から画像を削除
      *
@@ -91,5 +92,17 @@ class S3ImageService
     {
         return Storage::disk('s3')
             ->url($path);
+    }
+
+     /**
+     * 画像ファイルに拡張子を付与する
+     *
+     * @param string $file_name
+     *
+     * @return string
+     */
+    public static function addImageExtension(string $file_name): string
+    {
+        return "{$file_name}.jpg";
     }
 }

@@ -31,7 +31,7 @@ class ProductImageStoreRequest extends BaseRequest
     {
         return [
             'product_id'   => ['required', 'integer'],
-            'image'        => ['required', 'string', 'image_base64'],  // 画像ファイルの拡張子はjpg,jpeg
+            'image'        => ['required', 'string'],  // 画像ファイルの拡張子はjpg,jpeg
         ];
     }
 

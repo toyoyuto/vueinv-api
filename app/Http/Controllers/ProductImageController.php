@@ -7,7 +7,10 @@ use App\Http\Requests\ProductImageStoreRequest;
 use App\Http\Requests\ProductImageUpdateRequest;
 use App\ORM\ProductImage;
 use App\Services\ProductImageService;
+use App\Services\S3ImageService;
+use Illuminate\Support\Facades\DB;
 use Throwable;
+use Log;
 
 class ProductImageController extends BaseController
 {
@@ -155,9 +158,28 @@ class ProductImageController extends BaseController
      */
     public function store(ProductImageService $service, ProductImageStoreRequest $request)
     {
-        $productImage = $service->store($request);
+        $product_image =
+            DB::transaction(function () use ($request) {
+                // ファイルパス生成
+                $matches = S3ImageService::checkFormatBase64($request->input('image'));
+                // $matches[2]画像の実データが格納されている
+                $data = $matches[2];
+                $fill_name = S3ImageService::addImageExtension(str_random());
+                $path = "product_image/{$request->input('product_id')}/{$fill_name}";
 
-        return response()->json(compact('productImage'));
+                $product_image_value = [
+                    'product_id' => $request->input('product_id'),
+                    'path'       => $path,
+                ];
+                // DB登録
+                $stored_product_image = resolve(ProductImageService::class)->store($product_image_value);
+                // バナー画像をS3に保存
+                resolve(S3ImageService::class)->saveImage($path, $data);
+
+                return $stored_product_image;
+            });
+        return response()->json(compact('product_image'));
+
     }
 
     /**
