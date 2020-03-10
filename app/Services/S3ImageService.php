@@ -41,6 +41,25 @@ class S3ImageService
         Storage::disk('s3')->delete($path);
     }
 
+        
+    /**
+     * S3からディレクトリごと削除する
+     *
+     * @param string $directory
+     *
+     * @return void
+     */
+    public function removeDirectory(string $directory): void
+    {
+        // ファイルが無ければ何もしない
+        if (!Storage::disk('s3')->files($directory)) {
+            return;
+        }
+
+        // 削除
+        Storage::disk('s3')->deleteDirectory($directory);
+    }
+
     /**
      * S3から画像データをbase64形式で取得
      *

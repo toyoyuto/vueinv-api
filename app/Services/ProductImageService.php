@@ -10,6 +10,7 @@ use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Throwable;
+use Log;
 
 class ProductImageService
 {
@@ -59,7 +60,7 @@ class ProductImageService
     }
 
     /**
-     * 登録、更新
+     * 登録
      *
      * @param array $value
      *
@@ -81,24 +82,24 @@ class ProductImageService
     /**
      * 更新
      *
-     * @param ProductImageUpdateRequest $value
+     * @param array $value
      * @param ProductImage $productImage
      *
      * @throws Throwable
      *
      * @return ProductImage
      */
-    public function update(ProductImageUpdateRequest $value, ProductImage $productImage)
+    public function update(array $value, ProductImage $productImage)
     {
         DB::transaction(function () use (&$productImage, $value): void {
-            $productImage->fill($value->toArray())->save();
+            $productImage->fill($value)->save();
         });
 
         return $productImage;
     }
 
     /**
-     * 削除
+     * 削除(物理)
      *
      * @param ProductImage $productImage
      *
@@ -109,7 +110,7 @@ class ProductImageService
     public function destroy(ProductImage $productImage)
     {
         DB::transaction(function () use (&$productImage): void {
-            $productImage->delete();
+            $productImage->forceDelete();
         });
 
         return $productImage;
@@ -127,5 +128,21 @@ class ProductImageService
         $query   = $this->query($value->toArray());
 
         return $query->get();
+    }
+
+    /**
+     * 商品画像を削除する
+     *
+     * @param ProductImage $productImage
+     *
+     * @return void
+     */
+    public function clear(ProductImage $productImage): void
+    {
+        // ファイルパスを取得
+        $path = ProductImage::find($productImage->id)->path;
+
+        // 画像削除
+        resolve(S3ImageService::class)->removeImage($path);
     }
 }

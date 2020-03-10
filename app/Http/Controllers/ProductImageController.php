@@ -149,14 +149,13 @@ class ProductImageController extends BaseController
      *
      * Store a newly created resource in storage.
      *
-     * @param ProductImageService $service
      * @param ProductImageStoreRequest $request
      *
      * @throws Throwable
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductImageService $service, ProductImageStoreRequest $request)
+    public function store(ProductImageStoreRequest $request)
     {
         $product_image =
             DB::transaction(function () use ($request) {
@@ -173,7 +172,7 @@ class ProductImageController extends BaseController
                 ];
                 // DB登録
                 $stored_product_image = resolve(ProductImageService::class)->store($product_image_value);
-                // バナー画像をS3に保存
+                // 画像をS3に保存
                 resolve(S3ImageService::class)->saveImage($path, $data);
 
                 return $stored_product_image;
@@ -329,11 +328,34 @@ class ProductImageController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductImageService $service, ProductImageUpdateRequest $request, ProductImage $productImage)
+    public function update(ProductImageUpdateRequest $request, ProductImage $productImage)
     {
-        $productImage = $service->update($request, $productImage);
+        $product_image =
+            DB::transaction(function () use ($request, $productImage) {
+                // 保存先の画像を削除
+                resolve(ProductImageService::class)->clear($productImage);
 
-        return response()->json(compact('productImage'));
+                // ファイルパス生成ß
+                $matches = S3ImageService::checkFormatBase64($request->input('image'));
+                // $matches[2]画像の実データが格納されている
+                $data = $matches[2];
+                $fill_name = S3ImageService::addImageExtension(str_random());
+                $path = "product_image/{$request->input('product_id')}/{$fill_name}";
+
+                $product_image_value = [
+                    'product_id' => $request->input('product_id'),
+                    'path'       => $path,
+                ];
+
+                // DB更新
+                $update_product_image = resolve(ProductImageService::class)->update($product_image_value, $productImage);
+
+                // 画像をS3に保存
+                resolve(S3ImageService::class)->saveImage($path, $data);
+
+                return $update_product_image;
+            });
+    return response()->json(compact('product_image'));
     }
 
     /**
@@ -415,9 +437,16 @@ class ProductImageController extends BaseController
      */
     public function destroy(ProductImageService $service, ProductImage $productImage)
     {
-        $productImage = $service->destroy($productImage);
+        DB::transaction(function () use ($productImage) {
+            // 保存先の画像を削除
+            resolve(ProductImageService::class)->clear($productImage);
 
-        return response()->json(compact('productImage'));
+            // S3画像も削除されるため物理削除する
+            resolve(ProductImageService::class)->destroy($productImage);
+
+        });
+
+        return response()->json(['product_image' => true]);
     }
 
     /**
