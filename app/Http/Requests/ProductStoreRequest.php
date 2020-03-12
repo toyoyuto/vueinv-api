@@ -12,6 +12,7 @@ class ProductStoreRequest extends BaseRequest
      * @SWG\Property(property="name",description="商品名", type="string")
      * @SWG\Property(property="product_category_id",description="商品カテゴリーID", type="integer")
      * @SWG\Property(property="without_tax_sell_price_first",description="販売単価(税抜き)", type="integer")
+     * @SWG\Property(property="image",description="商品画像base64", type="string")
      */
 
     /**
@@ -36,6 +37,7 @@ class ProductStoreRequest extends BaseRequest
             'name'                         => ['required', 'max:255'],
             'product_category_id'          => ['required', 'integer'],
             'without_tax_sell_price'       => ['required', 'integer'],
+            'image'         => ['required', 'string', 'image_base64'], // 画像ファイルの拡張子はjpg,jpeg
         ];
     }
 
@@ -43,6 +45,7 @@ class ProductStoreRequest extends BaseRequest
     {
         return [
             'name' => '商品名',
+            'image' => '商品画像'
         ];
     }
 }

@@ -70,18 +70,18 @@ class ProductService
     /**
      * 登録、更新
      *
-     * @param ProductStoreRequest $value
+     * @param array $value
      *
      * @throws Throwable
      *
      * @return Product
      */
-    public function store(ProductStoreRequest $value)
+    public function store(array $value)
     {
         $product = new Product();
 
         DB::transaction(function () use (&$product, $value): void {
-            $product->fill($value->toArray())->save();
+            $product->fill($value)->save();
         });
 
         return $product;
@@ -90,17 +90,17 @@ class ProductService
     /**
      * 更新
      *
-     * @param ProductUpdateRequest $value
+     * @param array $value
      * @param Product $product
      *
      * @throws Throwable
      *
      * @return Product
      */
-    public function update(ProductUpdateRequest $value, Product $product)
+    public function update(array $value, Product $product)
     {
         DB::transaction(function () use (&$product, $value): void {
-            $product->fill($value->toArray())->save();
+            $product->fill($value)ß->save();
         });
 
         return $product;

@@ -7,7 +7,10 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
 use App\ORM\Product;
 use App\Services\ProductService;
+use App\Services\ProductImageService;
+use App\Services\S3ImageService;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends BaseController
 {
@@ -157,9 +160,23 @@ class ProductController extends BaseController
      */
     public function store(ProductService $service, ProductStoreRequest $request)
     {
-        $product = $service->store($request);
+        $product =
+            DB::transaction(function () use ($request) {
 
+                // 商品登録用のデータ加工(商品画像は商品テーブル登録に不要なため削除)
+                $product_value = $request->all();
+                unset($product_value['image']);
+
+                // 商品
+                $stored_product = resolve(ProductService::class)->store($request);
+
+            
+                resolve(ProductImageService::class)->save($stored_product, $request->input('image'));
+
+                return $stored_product;
+            });
         return response()->json(compact('product'));
+
     }
 
     /**

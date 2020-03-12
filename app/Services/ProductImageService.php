@@ -6,6 +6,7 @@ use App\Http\Requests\ProductImageSearchRequest;
 use App\Http\Requests\ProductImageStoreRequest;
 use App\Http\Requests\ProductImageUpdateRequest;
 use App\ORM\ProductImage;
+use App\ORM\Product;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -144,5 +145,33 @@ class ProductImageService
 
         // 画像削除
         resolve(S3ImageService::class)->removeImage($path);
+    }
+
+    /**
+     * 商品画像の登録(ファイルパスの生成)
+     *  ファイルパスの生成
+     *  DB登録
+     *  S3登録
+     * @param Product　$product
+     *
+     * @return void
+     */
+    public function save(Product $product, $image): void
+    {
+        // ファイルパス生成
+        $matches = S3ImageService::checkFormatBase64($image);
+        // $matches[2]画像の実データが格納されている
+        $data = $matches[2];
+        $fill_name = S3ImageService::addImageExtension(str_random());
+        $path = "product_image/{$product->id}/{$fill_name}";
+
+        $product_image_value = [
+            'product_id' => $product->id,
+            'path'       => $path,
+        ];
+        // 画像DB登録
+        resolve(ProductImageService::class)->store($product_image_value);
+        // 画像をS3に保存
+        resolve(S3ImageService::class)->saveImage($path, $data);
     }
 }
