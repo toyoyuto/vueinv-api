@@ -40,6 +40,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductImage extends BaseModel
 {
+    /**
+     * @SWG\Definition(
+     *      definition="ProductImageResource", 
+     *      type="object",
+     *      @SWG\Property(property="id",description="ID", type="integer"),
+     *      @SWG\Property(property="product_id",description="商品ID", type="integer"),
+     *      @SWG\Property(property="path",description="S3の格納先フルパス", type="string"),
+     *      @SWG\Property(property="deleted_at",description="削除日時", type="string", format="dateTime"),
+     * )
+     */
+    
     use SoftDeletes;
 
     protected $table = 'product_images';

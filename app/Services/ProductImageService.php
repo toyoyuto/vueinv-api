@@ -7,6 +7,7 @@ use App\Http\Requests\ProductImageStoreRequest;
 use App\Http\Requests\ProductImageUpdateRequest;
 use App\ORM\ProductImage;
 use App\ORM\Product;
+use App\Services\S3ImageService;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -111,6 +112,24 @@ class ProductImageService
     public function destroy(ProductImage $productImage)
     {
         DB::transaction(function () use (&$productImage): void {
+            $productImage->delete();
+        });
+
+        return $productImage;
+    }
+
+    /**
+     * 削除(物理)
+     *
+     * @param ProductImage $productImage
+     *
+     * @throws Throwable
+     *
+     * @return ProductImage
+     */
+    public function forceDestroy(ProductImage $productImage)
+    {
+        DB::transaction(function () use (&$productImage): void {
             $productImage->forceDelete();
         });
 
@@ -132,13 +151,13 @@ class ProductImageService
     }
 
     /**
-     * 商品画像を削除する
+     * 商品画像をS3から削除する
      *
      * @param ProductImage $productImage
      *
      * @return void
      */
-    public function clear(ProductImage $productImage): void
+    public function clearS3Image(ProductImage $productImage): void
     {
         // ファイルパスを取得
         $path = ProductImage::find($productImage->id)->path;
@@ -148,30 +167,85 @@ class ProductImageService
     }
 
     /**
-     * 商品画像の登録(ファイルパスの生成)
+     * 商品に紐づく商品画像の登録
      *  ファイルパスの生成
      *  DB登録
      *  S3登録
-     * @param Product　$product
+     * @param int $product_id
      *
-     * @return void
+     * @return ProductImage $stored_product_image
      */
-    public function save(Product $product, $image): void
+    public function save($product_id, $image)
     {
         // ファイルパス生成
         $matches = S3ImageService::checkFormatBase64($image);
         // $matches[2]画像の実データが格納されている
         $data = $matches[2];
         $fill_name = S3ImageService::addImageExtension(str_random());
-        $path = "product_image/{$product->id}/{$fill_name}";
+        $path = "product_image/{$product_id}/{$fill_name}";
 
         $product_image_value = [
-            'product_id' => $product->id,
+            'product_id' => $product_id,
             'path'       => $path,
         ];
         // 画像DB登録
-        resolve(ProductImageService::class)->store($product_image_value);
+        $stored_product_image = resolve(ProductImageService::class)->store($product_image_value);
         // 画像をS3に保存
         resolve(S3ImageService::class)->saveImage($path, $data);
+        return $stored_product_image;
+    }
+
+    /**
+     * 商品に紐づく商品画像の再登録
+     *  S3画像削除
+     *  ファイルパスの生成
+     *  DB更新
+     *  S3登録
+     * @param int $product_id
+     *
+     * @return ProductImage $updated_product_image
+     */
+    public function reregistration($product_id, $image)
+    {
+        // ファイルパスを避難させておく
+        $productImage = ProductImage::where('product_id', $product_id)->first();
+
+        // 実ファイルを削除
+        resolve(S3ImageService::class)->removeImage($productImage->path);
+
+        // ファイルパス生成
+        $matches = S3ImageService::checkFormatBase64($image);
+        // $matches[2]画像の実データが格納されている
+        $data = $matches[2];
+        $fill_name = S3ImageService::addImageExtension(str_random());
+        $path = "product_image/{$product_id}/{$fill_name}";
+
+        $product_image_value = [
+            'product_id' => $product_id,
+            'path'       => $path,
+        ];
+        // 画像DB更新
+        $updated_product_image = resolve(ProductImageService::class)->update($product_image_value, $productImage);
+        // 画像をS3に保存
+        resolve(S3ImageService::class)->saveImage($path, $data);
+
+        return $updated_product_image;
+    }
+
+    /**
+     * 商品に紐づく商品画像の削除
+     *  DB論理削除
+     *  S3は削除しない
+     * @param int $product_id
+     *
+     * @return ProductImage $deleted_product_image
+     */
+    public function clear($product_id)
+    {
+        // ファイルパスを避難させておく
+        $productImage = ProductImage::where('product_id', $product_id)->first();
+
+        $deleted_product_image = $this->destroy($productImage);
+        return $deleted_product_image;
     }
 }

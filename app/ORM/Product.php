@@ -41,19 +41,31 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\App\ORM\Product withoutTrashed()
  * @mixin \Eloquent
  */
+
 class Product extends BaseModel
 {
-    /*
+    /**
      * @SWG\Definition(
-     *     definition="product",
-     *     type="object",
-     *     @SWG\Property(property="id",description="ID", type="integer"),
-     *     @SWG\Property(property="product_cd",description="商品CD", type="string"),
-     *     @SWG\Property(property="name",description="商品名", type="string"),
-     *     @SWG\Property(property="product_category_id",description="商品カテゴリーID", type="integer"),
-     *     @SWG\Property(property="without_tax_sell_price_first",description="販売単価(税抜き)", type="integer")
+     *      definition="ProductResource", 
+     *      type="object",
+     *      @SWG\Property(property="id",description="ID", type="integer"),
+     *      @SWG\Property(property="product_cd",description="商品CD", type="string"),
+     *      @SWG\Property(property="name",description="商品名", type="string"),
+     *      @SWG\Property(property="product_category_id",description="商品カテゴリーID", type="integer"),
+     *      @SWG\Property(property="without_tax_sell_price_first",description="販売単価(税抜き)", type="integer"),
+     *      @SWG\Property(property="deleted_at",description="削除日時", type="string", format="dateTime"),
+     *      @SWG\Property(
+     *          property="product_category",
+     *          type="object",
+     *          ref="#/definitions/ProductCategoryResource"
+     *      ),
+     *      @SWG\Property(
+     *          property="product_image",
+     *          type="object",
+     *          ref="#/definitions/ProductImageResource"
+     *      )
      * )
-    */
+     */
 
     use SoftDeletes;
 

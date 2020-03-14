@@ -68,6 +68,21 @@ class ProductService
     }
 
     /**
+     * 商品を取得する
+     *
+     * @param int $product_id
+     *
+     * @return Collection
+     */
+    public function show(int $product_id)
+    {
+        $products = Product::with(['productCategory', 'productImage'])->find($product_id);
+
+      
+        return $products;
+    }
+
+    /**
      * 登録、更新
      *
      * @param array $value
@@ -100,7 +115,7 @@ class ProductService
     public function update(array $value, Product $product)
     {
         DB::transaction(function () use (&$product, $value): void {
-            $product->fill($value)ß->save();
+            $product->fill($value)->save();
         });
 
         return $product;

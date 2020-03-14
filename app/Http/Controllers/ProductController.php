@@ -8,9 +8,9 @@ use App\Http\Requests\ProductUpdateRequest;
 use App\ORM\Product;
 use App\Services\ProductService;
 use App\Services\ProductImageService;
-use App\Services\S3ImageService;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class ProductController extends BaseController
 {
@@ -36,7 +36,8 @@ class ProductController extends BaseController
      *         @SWG\Schema(
      *             @SWG\Property(
      *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 type="array",
+     *                 @SWG\Items(ref="#/definitions/ProductResource")
      *             )
      *         )
      *     ),
@@ -116,7 +117,7 @@ class ProductController extends BaseController
      *             @SWG\Property(
      *                 property="product",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/ProductResource"
      *             )
      *         )
      *     ),
@@ -160,7 +161,7 @@ class ProductController extends BaseController
      */
     public function store(ProductService $service, ProductStoreRequest $request)
     {
-        $product =
+        $stored_product =
             DB::transaction(function () use ($request) {
 
                 // 商品登録用のデータ加工(商品画像は商品テーブル登録に不要なため削除)
@@ -168,14 +169,15 @@ class ProductController extends BaseController
                 unset($product_value['image']);
 
                 // 商品
-                $stored_product = resolve(ProductService::class)->store($request);
+                $stored_product = resolve(ProductService::class)->store($product_value);
 
-            
-                resolve(ProductImageService::class)->save($stored_product, $request->input('image'));
+                resolve(ProductImageService::class)->save($stored_product->id, $request->input('image'));
 
                 return $stored_product;
             });
-        return response()->json(compact('product'));
+        // レスポンスに写真の情報を含めるため
+        $get_product = $service->show($stored_product->id);
+        return response()->json(['product' => $get_product]);
 
     }
 
@@ -204,7 +206,7 @@ class ProductController extends BaseController
      *             @SWG\Property(
      *                 property="product",
      *                 type="object",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/ProductResource"
      *             )
      *         )
      *     ),
@@ -243,9 +245,10 @@ class ProductController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(ProductService $service, Product $product)
     {
-        return response()->json(compact('product'));
+        $get_product = $service->show($product->id);
+        return response()->json(['product' => $get_product]);
     }
 
     /**
@@ -328,9 +331,26 @@ class ProductController extends BaseController
      */
     public function update(ProductService $service, ProductUpdateRequest $request, Product $product)
     {
-        $product = $service->update($request, $product);
+        $updated_product =
+            DB::transaction(function () use ($product, $request) {
 
-        return response()->json(compact('product'));
+                // 商品登録用のデータ加工(商品画像は商品テーブル登録に不要なため削除)
+                $product_value = $request->all();
+                unset($product_value['image']);
+
+                // 商品
+                $updated_product = resolve(ProductService::class)->update($product_value, $product);
+
+                // 画像再登録
+                resolve(ProductImageService::class)
+                    ->reregistration($product->id, $request->input('image'));
+
+                
+                return $updated_product;
+            });
+        // レスポンスに写真の情報を含めるため
+        $get_product = $service->show($updated_product->id);
+        return response()->json(['product' => $get_product]);
     }
 
     /**
@@ -403,18 +423,31 @@ class ProductController extends BaseController
      *
      * Remove the specified resource from storage.
      *
-     * @param ProductService $service
      * @param Product $product
      *
      * @throws Throwable
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductService $service, Product $product)
+    public function destroy(Product $product)
     {
-        $product = $service->destroy($product);
+        $deleted_product =
+            DB::transaction(function () use ($product) {
+                // 商品削除
+                $deleted_product = resolve(ProductService::class)->destroy($product);
+                // 画像の削除
+                resolve(ProductImageService::class)->clear($product->id);
 
-        return response()->json(compact('product'));
+                return $deleted_product;
+            });
+        // レスポンスに写真の情報を含めるため
+        $get_product = Product::with(['productCategory',
+                'productImage' => function($query) {
+                    $query->withTrashed();
+            }])
+            ->withTrashed()
+            ->find($deleted_product->id);
+        return response()->json(['product' => $get_product]);
     }
 
     /**
@@ -449,7 +482,7 @@ class ProductController extends BaseController
      *         @SWG\Schema(
      *             @SWG\Property(
      *                 property="products",
-     *                 ref="#/definitions/product"
+     *                 ref="#/definitions/ProductResource"
      *             )
      *         )
      *     ),

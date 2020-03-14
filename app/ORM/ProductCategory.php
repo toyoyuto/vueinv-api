@@ -34,6 +34,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class ProductCategory extends Model
 {
+    /**
+     * @SWG\Definition(
+     *      definition="ProductCategoryResource", 
+     *      type="object",
+     *      @SWG\Property(property="id",description="ID", type="integer"),
+     *      @SWG\Property(property="name",description="商品カテゴリー名", type="string"),
+     *      @SWG\Property(property="consumption_tax_id",description="消費税ID", type="integer"),
+     *      @SWG\Property(property="deleted_at",description="削除日時", type="string", format="dateTime"),
+     * )
+     */
+
     use SoftDeletes;
 
     /**

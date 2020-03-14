@@ -158,27 +158,13 @@ class ProductImageController extends BaseController
     public function store(ProductImageStoreRequest $request)
     {
         $product_image =
-            DB::transaction(function () use ($request) {
-                // ファイルパス生成
-                $matches = S3ImageService::checkFormatBase64($request->input('image'));
-                // $matches[2]画像の実データが格納されている
-                $data = $matches[2];
-                $fill_name = S3ImageService::addImageExtension(str_random());
-                $path = "product_image/{$request->input('product_id')}/{$fill_name}";
-
-                $product_image_value = [
-                    'product_id' => $request->input('product_id'),
-                    'path'       => $path,
-                ];
-                // DB登録
-                $stored_product_image = resolve(ProductImageService::class)->store($product_image_value);
-                // 画像をS3に保存
-                resolve(S3ImageService::class)->saveImage($path, $data);
-
-                return $stored_product_image;
-            });
+        DB::transaction(function () use ($request) {
+            // ファイルパス生成
+            $stored_product_image = resolve(ProductImageService::class)
+                ->save($request->input('product_id'), $request->input('image'));
+            return $stored_product_image;
+        });
         return response()->json(compact('product_image'));
-
     }
 
     /**
@@ -333,9 +319,9 @@ class ProductImageController extends BaseController
         $product_image =
             DB::transaction(function () use ($request, $productImage) {
                 // 保存先の画像を削除
-                resolve(ProductImageService::class)->clear($productImage);
+                resolve(ProductImageService::class)->clearS3Image($productImage);
 
-                // ファイルパス生成ß
+                // ファイルパス生成
                 $matches = S3ImageService::checkFormatBase64($request->input('image'));
                 // $matches[2]画像の実データが格納されている
                 $data = $matches[2];
@@ -439,10 +425,10 @@ class ProductImageController extends BaseController
     {
         DB::transaction(function () use ($productImage) {
             // 保存先の画像を削除
-            resolve(ProductImageService::class)->clear($productImage);
+            resolve(ProductImageService::class)->clearS3Image($productImage);
 
             // S3画像も削除されるため物理削除する
-            resolve(ProductImageService::class)->destroy($productImage);
+            resolve(ProductImageService::class)->forceDestroy($productImage);
 
         });
 

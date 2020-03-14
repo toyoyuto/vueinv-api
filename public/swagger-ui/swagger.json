@@ -484,7 +484,10 @@
                         "schema": {
                             "properties": {
                                 "products": {
-                                    "$ref": "#/definitions/product"
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/ProductResource"
+                                    }
                                 }
                             }
                         }
@@ -559,7 +562,7 @@
                             "properties": {
                                 "product": {
                                     "type": "object",
-                                    "$ref": "#/definitions/product"
+                                    "$ref": "#/definitions/ProductResource"
                                 }
                             }
                         }
@@ -633,7 +636,7 @@
                             "properties": {
                                 "product": {
                                     "type": "object",
-                                    "$ref": "#/definitions/product"
+                                    "$ref": "#/definitions/ProductResource"
                                 }
                             }
                         }
@@ -873,7 +876,7 @@
                         "schema": {
                             "properties": {
                                 "products": {
-                                    "$ref": "#/definitions/product"
+                                    "$ref": "#/definitions/ProductResource"
                                 }
                             }
                         }
@@ -1853,6 +1856,10 @@
                 "without_tax_sell_price_first": {
                     "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
                     "type": "integer"
+                },
+                "image": {
+                    "description": "\u5546\u54c1\u753b\u50cfbase64",
+                    "type": "string"
                 }
             },
             "type": "object"
@@ -1920,7 +1927,7 @@
             },
             "type": "object"
         },
-        "product": {
+        "ProductResource": {
             "properties": {
                 "id": {
                     "description": "ID",
@@ -1941,6 +1948,63 @@
                 "without_tax_sell_price_first": {
                     "description": "\u8ca9\u58f2\u5358\u4fa1(\u7a0e\u629c\u304d)",
                     "type": "integer"
+                },
+                "deleted_at": {
+                    "description": "\u524a\u9664\u65e5\u6642",
+                    "type": "string",
+                    "format": "dateTime"
+                },
+                "product_category": {
+                    "type": "object",
+                    "$ref": "#/definitions/ProductCategoryResource"
+                },
+                "product_image": {
+                    "type": "object",
+                    "$ref": "#/definitions/ProductImageResource"
+                }
+            },
+            "type": "object"
+        },
+        "ProductImageResource": {
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "product_id": {
+                    "description": "\u5546\u54c1ID",
+                    "type": "integer"
+                },
+                "path": {
+                    "description": "S3\u306e\u683c\u7d0d\u5148\u30d5\u30eb\u30d1\u30b9",
+                    "type": "string"
+                },
+                "deleted_at": {
+                    "description": "\u524a\u9664\u65e5\u6642",
+                    "type": "string",
+                    "format": "dateTime"
+                }
+            },
+            "type": "object"
+        },
+        "ProductCategoryResource": {
+            "properties": {
+                "id": {
+                    "description": "ID",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "\u5546\u54c1\u30ab\u30c6\u30b4\u30ea\u30fc\u540d",
+                    "type": "string"
+                },
+                "consumption_tax_id": {
+                    "description": "\u6d88\u8cbb\u7a0eID",
+                    "type": "integer"
+                },
+                "deleted_at": {
+                    "description": "\u524a\u9664\u65e5\u6642",
+                    "type": "string",
+                    "format": "dateTime"
                 }
             },
             "type": "object"
